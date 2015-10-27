@@ -28,7 +28,6 @@ public:
 
     float Length(City a, City b);
     void Recount(int a);
-    //void Paint(TCANVAS* pCanvas);
 
     int GetIteration();
     int GetFitness();

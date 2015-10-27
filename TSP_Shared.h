@@ -28,9 +28,9 @@ public:
 
 double sqr(double a);
 
-typedef TPoint City;
-typedef std::vector<int> vectorint;
-typedef std::vector<float> vectorfloat;
-typedef std::vector<City> vectorCity;
+typedef TPoint              City;
+typedef std::vector<int>    vectorint;
+typedef std::vector<float>  vectorfloat;
+typedef std::vector<City>   vectorCity;
 
 #endif // TSP_SHARED_H

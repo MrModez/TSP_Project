@@ -220,8 +220,8 @@ void TSP_Map::moveCity(int ID, int newX, int newY)
         {
             str += QString::number((int)j) + " ";
         }
-        const char *c_str = str.toLatin1().data();
-        qDebug( "%5s", c_str );
+        QByteArray bstr = str.toLatin1();
+        qDebug( "%s", bstr.data() );
     }
     qDebug( "" );
 }
