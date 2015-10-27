@@ -1,17 +1,12 @@
 // ====== Copyright © 2015, MrModez (Zagir Fabarisov), All rights reserved. ====
 //
-// Purpose: Branch and Bound Algorithm
+// Purpose: Base TSP algorithm
 //
 // =============================================================================
-#ifndef TSP_BB_H
-#define TSP_BB_H
-
 #include "tsp_algorithm.h"
 
-class TSP_BB : public TSP_Algorithm
+TSP_Algorithm::TSP_Algorithm() : QObject()
 {
-public:
-    TSP_BB();
-};
 
-#endif // TSP_BB_H
+}
+

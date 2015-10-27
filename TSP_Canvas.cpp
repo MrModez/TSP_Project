@@ -36,12 +36,11 @@ void Canvas::setBackgroundColor(QColor val)
 void Canvas::paintEvent(QPaintEvent *)
 {
     QPainter *painter = new QPainter(this);
-
     QPen pen(QColor(0, 0, 0, 20));
     QBrush brush(QColor(125, 255, 255, 255));
     painter->setBrush(brush);
     painter->setPen(pen);
-
+    painter->setRenderHint(QPainter::Antialiasing);
     for (auto city1 : m_pMap->GetArray())
     {
         for (auto city2 : m_pMap->GetArray())
@@ -58,14 +57,14 @@ void Canvas::paintEvent(QPaintEvent *)
     pen.setWidth(1);
     painter->setBrush(brush);
     painter->setPen(pen);
-    for (auto city : m_pMap->GetArray())
+    for (auto i = 0; i < m_pMap->GetArray().size(); i++)
     {
+        auto city = m_pMap->GetArray()[i];
         int x = city.x;
         int y = city.y;
         int r = 15;
         painter->drawEllipse(x - r , y - r, r * 2, r * 2);
-        //if (getLineThickness() == 0)
-        //    pen.setStyle(Qt::NoPen);
+        painter->drawText(x - r, y - r, QString::number(i));
     }
     delete painter;
 }
@@ -74,51 +73,55 @@ bool Canvas::event(QEvent *event)
 {
     if (event->type() == QEvent::Paint)
     {
-        QPaintEvent *ke = reinterpret_cast<QPaintEvent *>(event);
-        paintEvent(ke);
-        //qDebug( "Paint" );
+        QPaintEvent *pPaintEvent = reinterpret_cast<QPaintEvent *>(event);
+        paintEvent(pPaintEvent);
         return true;
     }
 
     if (event->type() == QEvent::KeyPress)
     {
-        qDebug( "KeyPress" );
-        // return true;
+        //qDebug("KeyPress");
     }
     if (event->type() == QEvent::MouseButtonPress)
     {
-        qDebug( "MouseButtonPress" );
-        int x = reinterpret_cast<QMouseEvent *>(event)->x();
-        int y = reinterpret_cast<QMouseEvent *>(event)->y();
+        QMouseEvent *pMouseEvent = reinterpret_cast<QMouseEvent *>(event);
+        int x = pMouseEvent->x();
+        int y = pMouseEvent->y();
         int ID = m_pMap->GetCityID(x, y, 15);
-        if (ID == -1)
+
+        if (pMouseEvent->button() == Qt::LeftButton)
         {
-            emit addCity(x, y);
+            if (ID != -1)
+            {
+                m_ID = ID;
+            }
+            else
+            {
+                emit addCity(x, y);
+            }
         }
-        else
+        else if (pMouseEvent->button() == Qt::RightButton)
         {
-            m_ID = ID;
+            if (ID != -1)
+            {
+                emit removeCity(ID);
+            }
         }
-        // return true;
     }
     if (event->type() == QEvent::MouseMove)
     {
-        qDebug( "MouseMove" );
-        int x = reinterpret_cast<QMouseEvent *>(event)->x();
-        int y = reinterpret_cast<QMouseEvent *>(event)->y();
+        QMouseEvent *pMouseEvent = reinterpret_cast<QMouseEvent *>(event);
+        int x = pMouseEvent->x();
+        int y = pMouseEvent->y();
         if (m_ID != -1)
         {
             emit moveCity(m_ID, x, y);
         }
-        // return true;
     }
     if (event->type() == QEvent::MouseButtonRelease)
     {
-        qDebug( "MouseButtonRelease" );
         m_ID = -1;
-       // return true;
     }
-
     repaint();
     return true;
 }

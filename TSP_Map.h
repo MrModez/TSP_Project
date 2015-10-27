@@ -6,9 +6,8 @@
 #ifndef TSP_MAP_H
 #define TSP_MAP_H
 
-#include <QObject>
 #include "tsp_shared.h"
-#include "vector"
+#include <QObject>
 
 class TCANVAS;
 

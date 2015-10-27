@@ -6,6 +6,8 @@
 #ifndef TSP_SHARED_H
 #define TSP_SHARED_H
 
+#include "vector"
+
 #define vectorint			std::vector<int>
 #define vectorcity			std::vector<City>
 

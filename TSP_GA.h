@@ -6,7 +6,9 @@
 #ifndef TSP_GA_H
 #define TSP_GA_H
 
-class TSP_GA
+#include "tsp_algorithm.h"
+
+class TSP_GA : public TSP_Algorithm
 {
 public:
     TSP_GA();

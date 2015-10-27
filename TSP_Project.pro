@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     TSP_GA.cpp \
     TSP_MainWindow.cpp \
     TSP_Canvas.cpp \
-    TSP_BB.cpp
+    TSP_BB.cpp \
+    TSP_Algorithm.cpp
 
 HEADERS  += \
     TSP_Map.h \
@@ -28,7 +29,8 @@ HEADERS  += \
     TSP_GA.h \
     TSP_MainWindow.h \
     TSP_Canvas.h \
-    TSP_BB.h
+    TSP_BB.h \
+    TSP_Algorithm.h
 
 FORMS    += \
     TSP_MainWindow.ui
