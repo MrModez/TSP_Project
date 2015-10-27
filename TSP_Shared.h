@@ -8,11 +8,6 @@
 
 #include "vector"
 
-#define vectorint			std::vector<int>
-#define vectorcity			std::vector<City>
-
-double sqr(double a);
-
 class TPoint
 {
 public:
@@ -30,6 +25,12 @@ public:
     float x;
     float y;
 };
+
+double sqr(double a);
+
 typedef TPoint City;
+typedef std::vector<int> vectorint;
+typedef std::vector<float> vectorfloat;
+typedef std::vector<City> vectorCity;
 
 #endif // TSP_SHARED_H

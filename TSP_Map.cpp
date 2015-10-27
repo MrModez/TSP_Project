@@ -105,7 +105,7 @@ int TSP_Map::GetFitness()
     return m_iFitness;
 }
 
-vectorcity TSP_Map::GetArray()
+vectorCity TSP_Map::GetArray()
 {
     return m_Array;
 }
@@ -152,7 +152,7 @@ void TSP_Map::SetFitness(int fitness)
     m_iFitness = fitness;
 }
 
-void TSP_Map::SetArray(vectorcity array)
+void TSP_Map::SetArray(vectorCity array)
 {
     m_Array = array;
 }
@@ -209,10 +209,21 @@ void TSP_Map::addCity(int newX, int newY)
 
 void TSP_Map::moveCity(int ID, int newX, int newY)
 {
-    qDebug( "moveCity %i %i %i", ID, newX, newY );
     SetArrayX(ID, newX);
     SetArrayY(ID, newY);
     Recount(ID);
+
+    for (auto i : m_fMatrix)
+    {
+        QString str = "";
+        for (auto j : i)
+        {
+            str += QString::number((int)j) + " ";
+        }
+        const char *c_str = str.toLatin1().data();
+        qDebug( "%5s", c_str );
+    }
+    qDebug( "" );
 }
 
 void TSP_Map::removeCity(int ID)

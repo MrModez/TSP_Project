@@ -32,18 +32,18 @@ public:
 
     int GetIteration();
     int GetFitness();
-    vectorcity GetArray();
+    vectorCity GetArray();
     vectorint GetWay();
     vectorint GetRightWay();
     int GetBest();
     float GetMatrix(int i, int j);
-    bool CheckEqual(std::vector<int>Way);
+    bool CheckEqual(vectorint Way);
 
     void SetIteration(int iteration);
     void SetFitness(int fitness);
-    void SetArray(vectorcity array);
-    void SetWay(std::vector<int>way);
-    void SetRightWay(std::vector<int>rightway);
+    void SetArray(vectorCity array);
+    void SetWay(vectorint way);
+    void SetRightWay(vectorint rightway);
     void SetBest(int best);
     void SetArrayX(int i, int X);
     void SetArrayY(int i, int Y);
@@ -60,8 +60,8 @@ protected:
     int m_iBest;
     bool m_bShow;
 
-    std::vector<std::vector<float> >m_fMatrix;
-    vectorcity m_Array;
+    std::vector<vectorfloat>m_fMatrix;
+    vectorCity m_Array;
     vectorint m_iWay;
     vectorint m_iRightWay;
 };

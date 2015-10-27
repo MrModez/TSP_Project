@@ -11,7 +11,11 @@
 class TSP_BB : public TSP_Algorithm
 {
 public:
-    TSP_BB();
+    TSP_BB(TSP_Map* Map);
+    virtual void Reset();
+    virtual vectorint GetBestWay();
+
+private:
 };
 
 #endif // TSP_BB_H
