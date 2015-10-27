@@ -4,7 +4,9 @@
 #include <QMainWindow>
 
 class TSP_Map;
-class Canvas;
+class TSP_GA;
+class TSP_BB;
+class TSP_Canvas;
 
 namespace Ui {
 class MainWindow;
@@ -19,9 +21,11 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
-    TSP_Map* m_pMap;
-    Canvas *m_pCanvas;
+    Ui::MainWindow  *ui;
+    TSP_Map         *m_pMap;
+    TSP_GA          *m_pGA;
+    TSP_BB          *m_pBB;
+    TSP_Canvas      *m_pCanvas;
 };
 
 #endif // MAINWINDOW_H

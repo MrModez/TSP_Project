@@ -3,20 +3,20 @@
 // Purpose: Canvas
 //
 // =============================================================================
-#ifndef CANVAS_H
-#define CANVAS_H
+#ifndef TSP_CANVAS_H
+#define TSP_CANVAS_H
 
 #include <QWidget>
 
 class TSP_Map;
 
-class Canvas : public QWidget
+class TSP_Canvas : public QWidget
 {
     Q_OBJECT
 
 public:
-    Canvas(QWidget *parent = 0, TSP_Map *map = 0);
-    virtual ~Canvas();
+    TSP_Canvas(QWidget *parent = 0, TSP_Map *map = 0);
+    virtual ~TSP_Canvas();
     void setBackgroundColor(QColor val);
     void setMap(TSP_Map *map);
 
@@ -34,4 +34,4 @@ private:
     int      m_ID;
 };
 
-#endif // CANVAS_H
+#endif // TSP_CANVAS_H

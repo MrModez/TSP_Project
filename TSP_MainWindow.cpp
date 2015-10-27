@@ -2,6 +2,8 @@
 #include "ui_tsp_mainwindow.h"
 #include "tsp_map.h"
 #include "tsp_canvas.h"
+#include "tsp_ga.h"
+#include "tsp_bb.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,7 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     m_pMap = new TSP_Map();
-    m_pCanvas = new Canvas(this, m_pMap);
+    m_pCanvas = new TSP_Canvas(this, m_pMap);
+    m_pGA = new TSP_GA(m_pMap);
+    m_pBB = new TSP_BB(m_pMap);
     QObject::connect(m_pCanvas, SIGNAL(addCity(int, int)),
                      m_pMap, SLOT(addCity(int, int)));
     QObject::connect(m_pCanvas, SIGNAL(moveCity(int, int, int)),
@@ -24,4 +28,6 @@ MainWindow::~MainWindow()
     delete ui;
     delete m_pMap;
     delete m_pCanvas;
+    delete m_pGA;
+    delete m_pBB;
 }

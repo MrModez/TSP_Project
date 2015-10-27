@@ -9,23 +9,23 @@
 #include <QDebug>
 #include <QMouseEvent>
 
-Canvas::Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
+TSP_Canvas::TSP_Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
 {
     setBackgroundColor(Qt::white);
     setMap(map);
     m_ID = -1;
 }
 
-Canvas::~Canvas()
+TSP_Canvas::~TSP_Canvas()
 {
 }
 
-void Canvas::setMap(TSP_Map *map)
+void TSP_Canvas::setMap(TSP_Map *map)
 {
     m_pMap = map;
 }
 
-void Canvas::setBackgroundColor(QColor val)
+void TSP_Canvas::setBackgroundColor(QColor val)
 {
     QPalette Pal;
     Pal.setColor(QPalette::Background, val);
@@ -33,7 +33,7 @@ void Canvas::setBackgroundColor(QColor val)
     this->setPalette(Pal);
 }
 
-void Canvas::paintEvent(QPaintEvent *)
+void TSP_Canvas::paintEvent(QPaintEvent *)
 {
     QPainter *painter = new QPainter(this);
     QPen pen(QColor(0, 0, 0, 20));
@@ -69,7 +69,7 @@ void Canvas::paintEvent(QPaintEvent *)
     delete painter;
 }
 
-bool Canvas::event(QEvent *event)
+bool TSP_Canvas::event(QEvent *event)
 {
     if (event->type() == QEvent::Paint)
     {
