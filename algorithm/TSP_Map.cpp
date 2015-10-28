@@ -3,7 +3,7 @@
 // Purpose: Map
 //
 // =============================================================================
-#include "tsp_map.h"
+#include "TSP_Map.h"
 
 TSP_Map::TSP_Map() : QObject()
 {

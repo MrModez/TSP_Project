@@ -1,12 +1,10 @@
 #include "TSP_MainWindow.h"
-#include "ui_TSP_MainWindow.h"
 #include "TSP_Map.h"
 #include "TSP_Canvas.h"
 #include "TSP_GA.h"
 #include "TSP_BB.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);

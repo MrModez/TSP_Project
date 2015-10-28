@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_TSP_MainWindow.h"
 #include <QMainWindow>
 
 class TSP_Map;
@@ -19,6 +20,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private slots:
 
 private:
     Ui::MainWindow  *ui;

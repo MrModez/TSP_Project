@@ -12,25 +12,27 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = TSP_Project
 TEMPLATE = app
-
+INCLUDEPATH += algorithm \
+               forms \
+               shared
 
 SOURCES += main.cpp\
-    TSP_Map.cpp \
-    TSP_Shared.cpp \
-    TSP_GA.cpp \
-    TSP_MainWindow.cpp \
-    TSP_Canvas.cpp \
-    TSP_BB.cpp \
-    TSP_Algorithm.cpp
+    algorithm/TSP_Algorithm.cpp \
+    algorithm/TSP_BB.cpp \
+    algorithm/TSP_GA.cpp \
+    algorithm/TSP_Map.cpp \
+    forms/TSP_Canvas.cpp \
+    forms/TSP_MainWindow.cpp \
+    shared/TSP_Shared.cpp
 
 HEADERS  += \
-    TSP_Map.h \
-    TSP_Shared.h \
-    TSP_GA.h \
-    TSP_MainWindow.h \
-    TSP_Canvas.h \
-    TSP_BB.h \
-    TSP_Algorithm.h
+    algorithm/TSP_Algorithm.h \
+    algorithm/TSP_BB.h \
+    algorithm/TSP_GA.h \
+    algorithm/TSP_Map.h \
+    forms/TSP_Canvas.h \
+    forms/TSP_MainWindow.h \
+    shared/TSP_Shared.h
 
 FORMS    += \
-    TSP_MainWindow.ui
+    forms/TSP_MainWindow.ui
