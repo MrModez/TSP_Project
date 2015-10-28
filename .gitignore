@@ -16,6 +16,7 @@
 /.qmake.stash
 *.pro.user
 *.pro.user.*
+*.user
 *.moc
 moc_*.cpp
 qrc_*.cpp
