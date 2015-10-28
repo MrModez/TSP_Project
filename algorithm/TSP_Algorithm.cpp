@@ -5,7 +5,7 @@
 // =============================================================================
 #include "TSP_Algorithm.h"
 
-TSP_Algorithm::TSP_Algorithm(TSP_Map* Map) : QObject()
+TSP_Algorithm::TSP_Algorithm(TSP_Map* Map) : QThread()
 {
     m_pMap = Map;
     m_iIteration = 0;

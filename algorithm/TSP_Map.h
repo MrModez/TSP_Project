@@ -41,7 +41,6 @@ public:
     void SetIteration(int iteration);
     void SetFitness(int fitness);
     void SetArray(vectorCity array);
-    void SetWay(vectorint way);
     void SetRightWay(vectorint rightway);
     void SetBest(int best);
     void SetArrayX(int i, int X);
@@ -52,6 +51,10 @@ public slots:
     void addCity(int newX, int newY);
     void moveCity(int ID, int newX, int newY);
     void removeCity(int ID);
+    void SetWay(vectorint way);
+
+signals:
+    void Updated();
 
 protected:
     int m_iIteration;

@@ -159,7 +159,9 @@ void TSP_Map::SetArray(vectorCity array)
 
 void TSP_Map::SetWay(vectorint way)
 {
+    qDebug( "SetWay" );
     m_iWay = way;
+    emit Updated();
 }
 
 void TSP_Map::SetRightWay(vectorint rightway)
@@ -213,10 +215,10 @@ void TSP_Map::moveCity(int ID, int newX, int newY)
     SetArrayY(ID, newY);
     Recount(ID);
 
-    for (auto i : m_fMatrix)
+    for (auto &i : m_fMatrix)
     {
         QString str = "";
-        for (auto j : i)
+        for (auto &j : i)
         {
             str += QString::number((int)j) + " ";
         }

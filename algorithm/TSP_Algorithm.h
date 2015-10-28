@@ -7,11 +7,11 @@
 #define TSP_ALGORITHM_H
 
 #include "TSP_Shared.h"
-#include <QObject>
+#include <QThread>
 
 class TSP_Map;
 
-class TSP_Algorithm : public QObject
+class TSP_Algorithm : public QThread
 {
     Q_OBJECT
 
@@ -22,6 +22,13 @@ public:
     virtual int GetIteration();
     virtual float GetFitness();
     virtual vectorint GetBestWay() = 0;
+
+public slots:
+    virtual void StartAlgorithm(){};
+    virtual void StopAlgorithm(){};
+
+signals:
+    void updateWay(vectorint vec);
 
 protected:
     TSP_Map*    m_pMap;

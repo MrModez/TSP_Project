@@ -22,6 +22,12 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+
+signals:
+    void StartGA();
+    void StopGA();
 
 private:
     Ui::MainWindow  *ui;

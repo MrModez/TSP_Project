@@ -14,6 +14,8 @@ TSP_Canvas::TSP_Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
     setBackgroundColor(Qt::white);
     setMap(map);
     m_ID = -1;
+    QObject::connect(m_pMap, SIGNAL(Updated()),
+                     this, SLOT(repaint()));
 }
 
 TSP_Canvas::~TSP_Canvas()
@@ -41,9 +43,9 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     painter->setBrush(brush);
     painter->setPen(pen);
     painter->setRenderHint(QPainter::Antialiasing);
-    for (auto city1 : m_pMap->GetArray())
+    for (auto &city1 : m_pMap->GetArray())
     {
-        for (auto city2 : m_pMap->GetArray())
+        for (auto &city2 : m_pMap->GetArray())
         {
             float x1 = city1.x;
             float x2 = city2.x;
@@ -57,16 +59,35 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     pen.setWidth(1);
     painter->setBrush(brush);
     painter->setPen(pen);
-    for (auto i = 0; i < m_pMap->GetArray().size(); i++)
+
+    if (m_pMap->GetWay().size() > 0)
     {
-        auto city = m_pMap->GetArray()[i];
+        for (auto k = 0; k < m_pMap->GetWay().size() - 1; k++)
+        {
+            float x1 = m_pMap->GetArray()[m_pMap->GetWay()[k]].x;
+            float x2 = m_pMap->GetArray()[m_pMap->GetWay()[k + 1]].x;
+            float y1 = m_pMap->GetArray()[m_pMap->GetWay()[k]].y;
+            float y2 = m_pMap->GetArray()[m_pMap->GetWay()[k + 1]].y;
+            painter->drawLine(x1, y1, x2, y2);
+        }
+    }
+
+    for (auto i = 0; i < m_pMap->Size(); i++)
+    {
+        auto &city = m_pMap->GetCity(i);
         int x = city.x;
         int y = city.y;
-        int r = 15;
+        int r = 10;
         painter->drawEllipse(x - r , y - r, r * 2, r * 2);
         painter->drawText(x - r, y - r, QString::number(i));
     }
     delete painter;
+}
+
+
+void TSP_Canvas::onUpdate()
+{
+    repaint();
 }
 
 bool TSP_Canvas::event(QEvent *event)
@@ -87,7 +108,7 @@ bool TSP_Canvas::event(QEvent *event)
         QMouseEvent *pMouseEvent = reinterpret_cast<QMouseEvent *>(event);
         int x = pMouseEvent->x();
         int y = pMouseEvent->y();
-        int ID = m_pMap->GetCityID(x, y, 15);
+        int ID = m_pMap->GetCityID(x, y, 10);
 
         if (pMouseEvent->button() == Qt::LeftButton)
         {
