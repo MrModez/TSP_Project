@@ -46,7 +46,6 @@ void MainWindow::on_pushButton_clicked()
     float supmut = 0.5f;
     m_pGA->SetSettings(pop, elit, mut, supmut);
     emit StartGA();
-    start();
 }
 
 void MainWindow::on_pushButton_2_clicked()

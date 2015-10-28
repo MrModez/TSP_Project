@@ -177,16 +177,8 @@ void TSP_GA::Mutate(ga_struct &member)
 
     for (int i = 0; i < times; i++)
     {
-        int pos1 = rand() % m_pMap->Size();
-        int pos2 = rand() % m_pMap->Size();
-        if (pos1 == 0)
-            pos1 += 1;
-        if (pos1 == m_pMap->Size() - 1)
-            pos1 -= 1;
-        if (pos2 == 0)
-            pos2 += 1;
-        if (pos2 == m_pMap->Size() - 1)
-            pos2 -= 1;
+        int pos1 = rand() % (m_pMap->Size() - 2) + 1;
+        int pos2 = rand() % (m_pMap->Size() - 2) + 1;
         int temp = member.way[pos1];
         member.way[pos1] = member.way[pos2];
         member.way[pos2] = temp;
@@ -195,22 +187,11 @@ void TSP_GA::Mutate(ga_struct &member)
 
 void TSP_GA::SupMutate(ga_struct &member)
 {
-    int pos1 = rand() % m_pMap->Size();
-    int pos2 = rand() % m_pMap->Size();
-
-    if (pos1 == 0)
-        pos1 += 1;
-    if (pos1 == m_pMap->Size() - 1)
-        pos1 -= 1;
-    if (pos2 == 0)
-        pos2 += 1;
-    if (pos2 == m_pMap->Size() - 1)
-        pos2 -= 1;
+    int pos1 = rand() % (m_pMap->Size() - 2) + 1;
+    int pos2 = rand() % (m_pMap->Size() - 2) + 1;
     if (pos1 > pos2)
     {
-        int temp = pos1;
-        pos1 = pos2;
-        pos2 = temp;
+        std::swap(pos1, pos2);
     }
     if (pos1 != pos2)
     {
@@ -234,10 +215,9 @@ void TSP_GA::Mate()
         pos2 = rand() % m_pMap->Size();
         if (pos1 > pos2)
         {
-            int temp = pos1;
-            pos1 = pos2;
-            pos2 = temp;
+            std::swap(pos1, pos2);
         }
+
         m_Buffer[i].way.clear();
         std::vector<int>num;
         for (int j = 0; j < m_pMap->Size(); j++)
