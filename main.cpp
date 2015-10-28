@@ -1,4 +1,4 @@
-#include "tsp_mainwindow.h"
+#include "TSP_MainWindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

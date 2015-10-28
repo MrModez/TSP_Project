@@ -1,9 +1,9 @@
-#include "tsp_mainwindow.h"
-#include "ui_tsp_mainwindow.h"
-#include "tsp_map.h"
-#include "tsp_canvas.h"
-#include "tsp_ga.h"
-#include "tsp_bb.h"
+#include "TSP_MainWindow.h"
+#include "ui_TSP_MainWindow.h"
+#include "TSP_Map.h"
+#include "TSP_Canvas.h"
+#include "TSP_GA.h"
+#include "TSP_BB.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

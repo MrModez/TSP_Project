@@ -3,7 +3,7 @@
 // Purpose: Base TSP algorithm
 //
 // =============================================================================
-#include "tsp_algorithm.h"
+#include "TSP_Algorithm.h"
 
 TSP_Algorithm::TSP_Algorithm(TSP_Map* Map) : QObject()
 {

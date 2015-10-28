@@ -6,7 +6,7 @@
 #ifndef TSP_BB_H
 #define TSP_BB_H
 
-#include "tsp_algorithm.h"
+#include "TSP_Algorithm.h"
 
 class TSP_BB : public TSP_Algorithm
 {

@@ -3,7 +3,7 @@
 // Purpose: Genetic Algorithm
 //
 // =============================================================================
-#include "tsp_ga.h"
+#include "TSP_GA.h"
 
 TSP_GA::TSP_GA(TSP_Map *Map, int iPopsize, float fElitrate, float fMutation, float fSupmutation)
     : TSP_Algorithm(Map)

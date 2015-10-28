@@ -6,7 +6,7 @@
 #ifndef TSP_GA_H
 #define TSP_GA_H
 
-#include "tsp_algorithm.h"
+#include "TSP_Algorithm.h"
 
 struct ga_struct
 {

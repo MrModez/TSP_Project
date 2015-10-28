@@ -6,7 +6,7 @@
 #ifndef TSP_ALGORITHM_H
 #define TSP_ALGORITHM_H
 
-#include "tsp_shared.h"
+#include "TSP_Shared.h"
 #include <QObject>
 
 class TSP_Map;

@@ -3,8 +3,8 @@
 // Purpose: Canvas
 //
 // =============================================================================
-#include "tsp_canvas.h"
-#include "tsp_map.h"
+#include "TSP_Canvas.h"
+#include "TSP_Map.h"
 #include <QPainter>
 #include <QDebug>
 #include <QMouseEvent>
