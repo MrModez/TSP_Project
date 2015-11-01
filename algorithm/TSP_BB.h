@@ -14,6 +14,7 @@ public:
     TSP_BB();
     virtual void Reset();
     virtual vectorint GetBestWay();
+    virtual float GetBestFitness();
 
 private:
 };

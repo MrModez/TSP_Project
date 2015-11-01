@@ -39,7 +39,7 @@ void TSP_SolverGA::run()
         CAST_GA(m_pAlgorithm)->SortByFitness();
 
         vectorint best = CAST_GA(m_pAlgorithm)->GetBestWay();
-        float fit = CAST_GA(m_pAlgorithm)->GetFitness();
+        float fit = CAST_GA(m_pAlgorithm)->GetBestFitness();
         QString str = "";
         for (auto &i : best)
         {

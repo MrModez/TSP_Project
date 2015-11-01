@@ -29,11 +29,6 @@ int TSP_Algorithm::GetIteration()
     return m_iIteration;
 }
 
-float TSP_Algorithm::GetFitness()
-{
-    return m_fFitness;
-}
-
 void TSP_Algorithm::SetArray(vectorCity Array)
 {
     m_Array = Array;

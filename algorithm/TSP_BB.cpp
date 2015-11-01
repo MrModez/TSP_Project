@@ -18,3 +18,8 @@ vectorint TSP_BB::GetBestWay()
 {
     return m_Way;
 }
+
+float TSP_BB::GetBestFitness()
+{
+    return m_fFitness;
+}

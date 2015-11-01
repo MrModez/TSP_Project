@@ -22,6 +22,10 @@ vectorint TSP_GA::GetBestWay()
     return m_Population[0].way;
 }
 
+float TSP_GA::GetBestFitness()
+{
+    return m_Population[0].fitness;
+}
 
 void TSP_GA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
 {

@@ -15,8 +15,8 @@ public:
     virtual void NextIteration();
     virtual void Reset();
     virtual int GetIteration();
-    virtual float GetFitness();
     virtual vectorint GetBestWay() = 0;
+    virtual float GetBestFitness() = 0;
     virtual void SetArray(vectorCity Array);
     virtual float GetLength(City a, City b);
 

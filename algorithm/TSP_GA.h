@@ -22,6 +22,7 @@ public:
 
     virtual void Reset();
     virtual vectorint GetBestWay();
+    virtual float GetBestFitness();
 
     void SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation);
     void InitPopulation();
