@@ -21,19 +21,20 @@ void TSP_SolverGA::SetSettings(int iPopsize, float fElitrate, float fMutation, f
     CAST_GA(m_pAlgorithm)->SetSettings(iPopsize, fElitrate, fMutation, fSupmutation);
 }
 
-void TSP_SolverGA::run()
+void TSP_SolverGA::Execute()
 {
     CAST_GA(m_pAlgorithm)->Reset();
     CAST_GA(m_pAlgorithm)->SetArray(m_pMap->GetArray());
     CAST_GA(m_pAlgorithm)->InitPopulation();
     qDebug("GA RUN");
-    for (int i = 0; i < 100000; i++)
+    int index = 0;
+    while (!m_bStop)
     {
-        m_Mutex.lock();
-        if (this->m_bStop) break;
-        m_Mutex.unlock();
+        //m_Mutex.lock();
+        //if (this->m_bStop) break;
+        //m_Mutex.unlock();
 
-        qDebug("GA %i:", i);
+        qDebug("GA %i:", index++);
         CAST_GA(m_pAlgorithm)->NextIteration();
         CAST_GA(m_pAlgorithm)->CalcFitness();
         CAST_GA(m_pAlgorithm)->SortByFitness();
@@ -54,13 +55,14 @@ void TSP_SolverGA::run()
         CAST_GA(m_pAlgorithm)->Mate();
         CAST_GA(m_pAlgorithm)->Swap();
     }
+    emit finished();
 }
 
 void TSP_SolverGA::StartAlgorithm()
 {
     qDebug("StartGA");
     m_bStop = false;
-    start();
+    Execute();
 }
 
 void TSP_SolverGA::StopAlgorithm()

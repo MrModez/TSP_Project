@@ -12,22 +12,22 @@
 class TSP_Algorithm;
 class TSP_Map;
 
-class TSP_Solver : public QThread
+class TSP_Solver : public QObject
 {
     Q_OBJECT
 
 public:
     TSP_Solver(TSP_Algorithm *pAlgorithm, TSP_Map *pMap);
     ~TSP_Solver();
-    virtual void run();
+    virtual void Execute();
 
 public slots:
-    //virtual void SetSettings(int iPopsize = 0, float fElitrate = 0, float fMutation = 0, float fSupmutation = 0);
     virtual void StartAlgorithm(){}
     virtual void StopAlgorithm(){}
 
 signals:
     void updateWay(vectorint vec);
+    void finished();
 
 protected:
     TSP_Algorithm *m_pAlgorithm;

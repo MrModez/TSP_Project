@@ -19,7 +19,7 @@ TSP_Solver::~TSP_Solver()
    delete m_pAlgorithm;
 }
 
-void TSP_Solver::run()
+void TSP_Solver::Execute()
 {
 
 }
