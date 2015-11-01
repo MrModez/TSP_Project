@@ -109,16 +109,11 @@ double TSP_GA::WayLength(std::vector<int>way, int pos1, int pos2)
 
 void TSP_GA::Mutate(ga_struct &member)
 {
-    int times = rand() % m_iSize;
-
-    for (int i = 0; i < times; i++)
-    {
-        int pos1 = rand() % (m_iSize - 2) + 1;
-        int pos2 = rand() % (m_iSize - 2) + 1;
-        int temp = member.way[pos1];
-        member.way[pos1] = member.way[pos2];
-        member.way[pos2] = temp;
-    }
+    int pos1 = rand() % (m_iSize - 2) + 1;
+    int pos2 = rand() % (m_iSize - 2) + 1;
+    int temp = member.way[pos1];
+    member.way[pos1] = member.way[pos2];
+    member.way[pos2] = temp;
 }
 
 void TSP_GA::SupMutate(ga_struct &member)
