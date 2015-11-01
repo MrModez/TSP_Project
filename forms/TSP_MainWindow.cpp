@@ -1,8 +1,7 @@
 #include "TSP_MainWindow.h"
 #include "TSP_Map.h"
 #include "TSP_Canvas.h"
-#include "TSP_GA.h"
-#include "TSP_BB.h"
+#include "TSP_SolverGA.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -11,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     m_pMap = new TSP_Map();
     m_pCanvas = new TSP_Canvas(this, m_pMap);
-    m_pGA = new TSP_GA(m_pMap);
-    m_pBB = new TSP_BB(m_pMap);
+    m_pSolverGA = new TSP_SolverGA(new TSP_GA(), m_pMap);
+
+    //m_pSolvers = new TSP_SolverCollection();
+    //m_pSolvers->AddSolver(Prob_GA);
 
     QObject::connect(m_pCanvas, SIGNAL(addCity(int, int)),
                      m_pMap, SLOT(addCity(int, int)));
@@ -22,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                      m_pMap, SLOT(removeCity(int)));
 
     QObject::connect(this, SIGNAL(StartGA()),
-                     m_pGA, SLOT(StartAlgorithm()));
+                     m_pSolverGA, SLOT(StartAlgorithm()));
     QObject::connect(this, SIGNAL(StopGA()),
-                     m_pGA, SLOT(StopAlgorithm()));
+                     m_pSolverGA, SLOT(StopAlgorithm()));
 
     setCentralWidget(m_pCanvas);
 }
@@ -34,8 +35,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete m_pMap;
     delete m_pCanvas;
-    delete m_pGA;
-    delete m_pBB;
+    delete m_pSolverGA;
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -44,7 +44,7 @@ void MainWindow::on_pushButton_clicked()
     float elit = 0.2f;
     float mut = 0.2f;
     float supmut = 0.5f;
-    m_pGA->SetSettings(pop, elit, mut, supmut);
+    m_pSolverGA->SetSettings(pop, elit, mut, supmut);
     emit StartGA();
 }
 

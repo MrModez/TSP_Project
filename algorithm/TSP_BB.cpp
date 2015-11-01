@@ -5,7 +5,7 @@
 // =============================================================================
 #include "TSP_BB.h"
 
-TSP_BB::TSP_BB(TSP_Map *Map) : TSP_Algorithm(Map)
+TSP_BB::TSP_BB() : TSP_Algorithm()
 {
 
 }

@@ -7,35 +7,26 @@
 #define TSP_ALGORITHM_H
 
 #include "TSP_Shared.h"
-#include <QThread>
 
-class TSP_Map;
-
-class TSP_Algorithm : public QThread
+class TSP_Algorithm
 {
-    Q_OBJECT
-
 public:
-    TSP_Algorithm(TSP_Map* Map);
+    TSP_Algorithm();
     virtual void NextIteration();
     virtual void Reset();
     virtual int GetIteration();
     virtual float GetFitness();
     virtual vectorint GetBestWay() = 0;
-
-public slots:
-    virtual void StartAlgorithm(){};
-    virtual void StopAlgorithm(){};
-
-signals:
-    void updateWay(vectorint vec);
+    virtual void SetArray(vectorCity Array);
+    virtual float GetLength(City a, City b);
 
 protected:
-    TSP_Map*    m_pMap;
+    vectorCity  m_Array;
     vectorint   m_Way;
 
     float       m_fFitness;
     int         m_iIteration;
+    int         m_iSize;
     bool        m_bShow;
 };
 

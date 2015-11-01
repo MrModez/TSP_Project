@@ -4,10 +4,9 @@
 #include "ui_TSP_MainWindow.h"
 #include <QMainWindow>
 
-class TSP_Map;
-class TSP_GA;
-class TSP_BB;
 class TSP_Canvas;
+class TSP_Map;
+class TSP_SolverGA;
 
 namespace Ui {
 class MainWindow;
@@ -30,11 +29,11 @@ signals:
     void StopGA();
 
 private:
-    Ui::MainWindow  *ui;
-    TSP_Map         *m_pMap;
-    TSP_GA          *m_pGA;
-    TSP_BB          *m_pBB;
-    TSP_Canvas      *m_pCanvas;
+    Ui::MainWindow      *ui;
+    TSP_Canvas          *m_pCanvas;
+    TSP_Map             *m_pMap;
+    TSP_SolverGA        *m_pSolverGA;
+    //TSP_SolverCollection *m_pSolvers;
 };
 
 #endif // MAINWINDOW_H

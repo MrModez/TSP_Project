@@ -38,7 +38,7 @@ void TSP_Canvas::setBackgroundColor(QColor val)
 void TSP_Canvas::paintEvent(QPaintEvent *)
 {
     QPainter *painter = new QPainter(this);
-    QPen pen(QColor(0, 0, 0, 20));
+    QPen pen(QColor(0, 0, 0, 10));
     QBrush brush(QColor(125, 255, 255, 255));
     painter->setBrush(brush);
     painter->setPen(pen);
@@ -64,10 +64,12 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     {
         for (auto k = 0; k < m_pMap->GetWay().size() - 1; k++)
         {
-            float x1 = m_pMap->GetArray()[m_pMap->GetWay()[k]].x;
-            float x2 = m_pMap->GetArray()[m_pMap->GetWay()[k + 1]].x;
-            float y1 = m_pMap->GetArray()[m_pMap->GetWay()[k]].y;
-            float y2 = m_pMap->GetArray()[m_pMap->GetWay()[k + 1]].y;
+            auto city1 = m_pMap->GetCityFromWay(k);
+            auto city2 = m_pMap->GetCityFromWay(k + 1);
+            float x1 = city1.x;
+            float x2 = city2.x;
+            float y1 = city1.y;
+            float y2 = city2.y;
             painter->drawLine(x1, y1, x2, y2);
         }
     }

@@ -25,6 +25,7 @@ public:
     void MatrixResize(int size);
     int GetCityID(int x, int y, int r = 10);
     City GetCity(int ID);
+    City GetCityFromWay(int ID);
 
     float Length(City a, City b);
     void Recount(int a);
@@ -34,6 +35,7 @@ public:
     vectorCity GetArray();
     vectorint GetWay();
     vectorint GetRightWay();
+    std::vector<vectorfloat> GetMatrix();
     int GetBest();
     float GetMatrix(int i, int j);
     bool CheckEqual(vectorint Way);

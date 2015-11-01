@@ -81,6 +81,11 @@ TPoint TSP_Map::GetCity(int ID)
     return m_Array[ID];
 }
 
+TPoint TSP_Map::GetCityFromWay(int ID)
+{
+    return m_Array[m_iWay[ID]];
+}
+
 void TSP_Map::Recount(int a)
 {
     for (auto i = 0; i < m_Array.size(); i++)
@@ -118,6 +123,11 @@ vectorint TSP_Map::GetWay()
 vectorint TSP_Map::GetRightWay()
 {
     return m_iRightWay;
+}
+
+std::vector<vectorfloat> TSP_Map::GetMatrix()
+{
+    return m_fMatrix;
 }
 
 int TSP_Map::GetBest()
