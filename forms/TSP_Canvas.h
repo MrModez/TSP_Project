@@ -24,9 +24,6 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     bool event(QEvent *event) override;
 
-public slots:
-    void onUpdate();
-
 signals:
     void addCity(int newX, int newY);
     void moveCity(int ID, int newX, int newY);

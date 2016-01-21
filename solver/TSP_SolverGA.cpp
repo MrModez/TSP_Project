@@ -7,13 +7,15 @@
 #include "TSP_GA.h"
 #include "TSP_Algorithm.h"
 #include "TSP_Map.h"
+#include <QtCore>
 
 #define CAST_GA(alg) dynamic_cast<TSP_GA*>(alg)
 
 TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solver(pAlgorithm, pMap)
 {
-    QObject::connect(this, SIGNAL(updateWay(vectorint)),
-                     m_pMap, SLOT(SetWay(vectorint)));
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+    timer->start(1000);
 }
 
 void TSP_SolverGA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
@@ -27,6 +29,7 @@ void TSP_SolverGA::Execute()
     CAST_GA(m_pAlgorithm)->SetArray(m_pMap->GetArray());
     CAST_GA(m_pAlgorithm)->InitPopulation();
     qDebug("GA RUN");
+
     int index = 0;
     while (!m_bStop)
     {
@@ -49,8 +52,9 @@ void TSP_SolverGA::Execute()
         QByteArray bstr = str.toLatin1();
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
+        emit updateWay(best);
         m_pMap->SetWay(best);
-        //emit updateWay(best);
+        //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
         CAST_GA(m_pAlgorithm)->Mate();
         CAST_GA(m_pAlgorithm)->Swap();
@@ -69,4 +73,10 @@ void TSP_SolverGA::StopAlgorithm()
 {
     qDebug("StopGA");
     m_bStop = true;
+}
+
+void TSP_SolverGA::Update()
+{
+    qDebug("Update");
+    m_pMap->SetWay(CAST_GA(m_pAlgorithm)->GetBestWay());
 }

@@ -103,7 +103,6 @@ double TSP_GA::WayLength(std::vector<int>way, int pos1, int pos2)
     int len = 0;
     for (int i = pos1; i < pos2; i++)
         len += GetLength(m_Array[way[pos1]], m_Array[way[pos2]]);
-        //len += m_pMap->Length(m_pMap->GetArray()[way[pos1]], m_pMap->GetArray()[way[pos2]]);
     return len;
 }
 
@@ -126,7 +125,7 @@ void TSP_GA::SupMutate(ga_struct &member)
     }
     if (pos1 != pos2)
     {
-        reverse(member.way.begin() + pos1, member.way.begin() + pos2);
+        std::reverse(member.way.begin() + pos1, member.way.begin() + pos2);
     }
 }
 
@@ -139,7 +138,7 @@ void TSP_GA::Mate()
     // Mate the rest
     for (int i = esize; i < m_iPopulationSize; i++)
     {
-        i1 = rand() % (int)(m_iPopulationSize * m_fElitRate);
+        i1 = rand() % (int)(m_iPopulationSize * m_fElitRate);//(int)(m_iPopulationSize / 2.0);
         i2 = rand() % (m_iPopulationSize);
 
         pos1 = rand() % m_iSize;

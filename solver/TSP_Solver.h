@@ -7,7 +7,7 @@
 #define TSP_SOLVER_H
 
 #include "TSP_Shared.h"
-#include <QThread>
+#include <QObject>
 
 class TSP_Algorithm;
 class TSP_Map;
@@ -24,6 +24,7 @@ public:
 public slots:
     virtual void StartAlgorithm(){}
     virtual void StopAlgorithm(){}
+    virtual void Update(){}
 
 signals:
     void updateWay(vectorint vec);
@@ -32,7 +33,6 @@ signals:
 protected:
     TSP_Algorithm *m_pAlgorithm;
     TSP_Map     *m_pMap;
-    QMutex      m_Mutex;
     bool        m_bStop;
 };
 

@@ -14,7 +14,7 @@ TSP_Canvas::TSP_Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
     setBackgroundColor(Qt::white);
     setMap(map);
     m_ID = -1;
-    QObject::connect(m_pMap, SIGNAL(Updated()),
+    QObject::connect(m_pMap, SIGNAL(Update()),
                      this, SLOT(repaint()));
 }
 
@@ -76,7 +76,7 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
 
     for (auto i = 0; i < m_pMap->Size(); i++)
     {
-        auto &city = m_pMap->GetCity(i);
+        auto city = m_pMap->GetCity(i);
         int x = city.x;
         int y = city.y;
         int r = 10;
@@ -84,12 +84,6 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
         painter->drawText(x - r, y - r, QString::number(i));
     }
     delete painter;
-}
-
-
-void TSP_Canvas::onUpdate()
-{
-    repaint();
 }
 
 bool TSP_Canvas::event(QEvent *event)

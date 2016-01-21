@@ -171,7 +171,7 @@ void TSP_Map::SetWay(vectorint way)
 {
     qDebug( "SetWay" );
     m_iWay = way;
-    emit Updated();
+    emit Update();
 }
 
 void TSP_Map::SetRightWay(vectorint rightway)

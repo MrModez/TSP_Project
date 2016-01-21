@@ -56,7 +56,7 @@ public slots:
     void SetWay(vectorint way);
 
 signals:
-    void Updated();
+    void Update();
 
 protected:
     int m_iIteration;
