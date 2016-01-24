@@ -22,6 +22,7 @@ public:
 
 public slots:
     void StartGA();
+    void StopGA();
 
 private:
     Ui::MainWindow      *ui;

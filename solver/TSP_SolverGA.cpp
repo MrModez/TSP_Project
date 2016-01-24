@@ -13,9 +13,9 @@
 
 TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solver(pAlgorithm, pMap)
 {
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-    timer->start(1000);
+    //timer = new QTimer(this);
+    //connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+    //timer->start(1000);
 }
 
 void TSP_SolverGA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
@@ -53,7 +53,6 @@ void TSP_SolverGA::Execute()
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
         emit updateWay(best);
-        m_pMap->SetWay(best);
         //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
         CAST_GA(m_pAlgorithm)->Mate();
@@ -64,19 +63,19 @@ void TSP_SolverGA::Execute()
 
 void TSP_SolverGA::StartAlgorithm()
 {
-    qDebug("StartGA");
+    qDebug("TSP_SolverGA::StartGA");
     m_bStop = false;
     Execute();
 }
 
 void TSP_SolverGA::StopAlgorithm()
 {
-    qDebug("StopGA");
+    qDebug("TSP_SolverGA::StopGA");
     m_bStop = true;
 }
 
 void TSP_SolverGA::Update()
 {
-    qDebug("Update");
+    qDebug("TSP_SolverGA::Update");
     m_pMap->SetWay(CAST_GA(m_pAlgorithm)->GetBestWay());
 }
