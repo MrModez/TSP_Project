@@ -17,6 +17,9 @@ INCLUDEPATH += algorithm \
                shared   \
                solver
 
+QMAKE_LIBS+=-static -lgomp -lpthread
+QMAKE_CXXFLAGS+=-fopenmp
+
 SOURCES += main.cpp\
     algorithm/TSP_Algorithm.cpp \
     algorithm/TSP_BB.cpp \

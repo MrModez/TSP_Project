@@ -7,6 +7,7 @@
 #define TSP_SHARED_H
 
 #include "vector"
+#include "omp.h"
 
 class TPoint
 {

@@ -33,6 +33,7 @@ public:
     void Elitism(int esize);
     void Mutate(ga_struct &member);
     void SupMutate(ga_struct &member);
+    void Mutate_move(ga_struct &member);
     double WayLength(vectorint way, int pos1, int pos2);
     void Mate();
     void Swap();

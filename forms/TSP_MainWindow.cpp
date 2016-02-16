@@ -45,10 +45,10 @@ void MainWindow::StartGA()
     connect(m_pSolverGA, &TSP_SolverGA::finished, m_pSolverGA, &TSP_SolverGA::deleteLater);
     connect(pGAThread, &QThread::finished, pGAThread, &QThread::deleteLater);
 
-    int pop = 10000;
-    float elit = 0.05f;
-    float mut = 0.8f;
-    float supmut = 0.6f;
+    int pop = 100000;
+    float elit = 0.001f;
+    float mut = 0.55f;
+    float supmut = 0.75f;
     m_pSolverGA->SetSettings(pop, elit, mut, supmut);
 
     pGAThread->start();

@@ -115,6 +115,19 @@ void TSP_GA::Mutate(ga_struct &member)
     member.way[pos2] = temp;
 }
 
+void TSP_GA::Mutate_move(ga_struct &member)
+{
+    int pos1 = rand() % (m_iSize - 2) + 1;
+    int pos2 = rand() % (m_iSize - 2) + 1;
+    int temp = member.way[pos1];
+    member.way.erase(member.way.begin()+pos1);
+    member.way.insert(member.way.begin()+pos2, temp);
+
+    //int temp = member.way[pos1];
+   // member.way[pos1] = member.way[pos2];
+   // member.way[pos2] = temp;
+}
+
 void TSP_GA::SupMutate(ga_struct &member)
 {
     int pos1 = rand() % (m_iSize - 2) + 1;
@@ -132,14 +145,24 @@ void TSP_GA::SupMutate(ga_struct &member)
 void TSP_GA::Mate()
 {
     int esize = m_iPopulationSize * m_fElitRate;
-    int pos1 = -1, pos2 = -1, i1, i2;
     Elitism(esize);
 
+    std::vector<ga_struct> omp_Buffer = m_Buffer;
+    //omp_Buffer.
+    //omp_Buffer.resize(m_Buffer.size());
+   // for (int i = 0; i < m_Buffer.size(); i++)
+    //    omp_Buffer[i] = m_Buffer[i];
+
     // Mate the rest
+#pragma omp parallel for shared(omp_Buffer)
     for (int i = esize; i < m_iPopulationSize; i++)
     {
-        i1 = rand() % (int)(m_iPopulationSize * m_fElitRate);//(int)(m_iPopulationSize / 2.0);
-        i2 = rand() % (m_iPopulationSize);
+        //qDebug("%i", omp_get_thread_num());
+        int pos1 = -1, pos2 = -1, i1, i2;
+
+        int elit = (m_iPopulationSize * m_fElitRate);
+        i1 = rand() % elit;//(int)(m_iPopulationSize / 2.0);
+        i2 = (rand() % (m_iPopulationSize - elit)) + elit;
 
         pos1 = rand() % m_iSize;
         pos2 = rand() % m_iSize;
@@ -148,7 +171,7 @@ void TSP_GA::Mate()
             std::swap(pos1, pos2);
         }
 
-        m_Buffer[i].way.clear();
+        omp_Buffer[i].way.clear();
         std::vector<int>num;
         for (int j = 0; j < m_iSize; j++)
         {
@@ -178,19 +201,19 @@ void TSP_GA::Mate()
             {
                 if (num[m_Population[i2].way[j]] != -1)
                 {
-                    m_Buffer[i].way.push_back(m_Population[i2].way[j]);
+                    omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
                     num[m_Population[i2].way[j]] = -1;
                 }
             };
             for (int j = pos1; j < pos2; j++)
             {
-                m_Buffer[i].way.push_back(m_Population[i1].way[j]);
+                omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
             }
             for (int j = pos1; j < m_iSize; j++)
             {
                 if (num[m_Population[i2].way[j]] != -1)
                 {
-                    m_Buffer[i].way.push_back(m_Population[i2].way[j]);
+                    omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
                     num[m_Population[i2].way[j]] = -1;
                 }
             };
@@ -204,34 +227,43 @@ void TSP_GA::Mate()
             {
                 if (num[m_Population[i1].way[j]] != -1)
                 {
-                    m_Buffer[i].way.push_back(m_Population[i1].way[j]);
+                    omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
                     num[m_Population[i1].way[j]] = -1;
                 }
             };
             for (int j = pos1; j < pos2; j++)
             {
-                m_Buffer[i].way.push_back(m_Population[i2].way[j]);
+                omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
             }
             for (int j = pos1; j < m_iSize; j++)
             {
                 if (num[m_Population[i1].way[j]] != -1)
                 {
-                    m_Buffer[i].way.push_back(m_Population[i1].way[j]);
+                    omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
                     num[m_Population[i1].way[j]] = -1;
                 }
             };
         }
-        m_Buffer[i].way.push_back(0);
+        omp_Buffer[i].way.push_back(0);
 
-        if (rand() < m_fMutationSupRate)
-        {
-            SupMutate(m_Buffer[i]);
-        }
         if (rand() < m_fMutationRate)
         {
-            Mutate(m_Buffer[i]);
+            Mutate(omp_Buffer[i]);
         }
+        else if (rand() < m_fMutationRate)
+        {
+            Mutate_move(omp_Buffer[i]);
+        }
+        else if (rand() < m_fMutationSupRate)
+        {
+            SupMutate(omp_Buffer[i]);
+        }
+
     }
+
+   // for (int i = 0; i < m_Buffer.size(); i++)
+    //    m_Buffer[i] = omp_Buffer[i];
+    m_Buffer = omp_Buffer;
 }
 
 void TSP_GA::Swap()
