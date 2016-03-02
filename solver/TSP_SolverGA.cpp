@@ -9,7 +9,7 @@
 #include "TSP_Map.h"
 #include <QtCore>
 
-#define CAST_GA(alg) dynamic_cast<TSP_GA*>(alg)
+#define GA dynamic_cast<TSP_GA*>(m_pAlgorithm)
 
 TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solver(pAlgorithm, pMap)
 {
@@ -20,14 +20,14 @@ TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solve
 
 void TSP_SolverGA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
 {
-    CAST_GA(m_pAlgorithm)->SetSettings(iPopsize, fElitrate, fMutation, fSupmutation);
+    GA->SetSettings(iPopsize, fElitrate, fMutation, fSupmutation);
 }
 
 void TSP_SolverGA::Execute()
 {
-    CAST_GA(m_pAlgorithm)->Reset();
-    CAST_GA(m_pAlgorithm)->SetArray(m_pMap->GetArray());
-    CAST_GA(m_pAlgorithm)->InitPopulation();
+    GA->Reset();
+    GA->SetArray(m_pMap->GetArray());
+    GA->InitPopulation();
     qDebug("GA RUN");
 
     int index = 0;
@@ -38,12 +38,12 @@ void TSP_SolverGA::Execute()
         //m_Mutex.unlock();
 
         qDebug("GA %i:", index++);
-        CAST_GA(m_pAlgorithm)->NextIteration();
-        CAST_GA(m_pAlgorithm)->CalcFitness();
-        CAST_GA(m_pAlgorithm)->SortByFitness();
+        GA->NextIteration();
+        GA->CalcFitness();
+        GA->SortByFitness();
 
-        vectorint best = CAST_GA(m_pAlgorithm)->GetBestWay();
-        float fit = CAST_GA(m_pAlgorithm)->GetBestFitness();
+        vectorint best = GA->GetBestWay();
+        float fit = GA->GetBestFitness();
         QString str = "";
         for (auto &i : best)
         {
@@ -55,8 +55,8 @@ void TSP_SolverGA::Execute()
         emit updateWay(best);
         //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
-        CAST_GA(m_pAlgorithm)->Mate();
-        CAST_GA(m_pAlgorithm)->Swap();
+        GA->Mate();
+        GA->Swap();
     }
     emit finished();
 }
@@ -77,5 +77,5 @@ void TSP_SolverGA::StopAlgorithm()
 void TSP_SolverGA::Update()
 {
     qDebug("TSP_SolverGA::Update");
-    m_pMap->SetWay(CAST_GA(m_pAlgorithm)->GetBestWay());
+    m_pMap->SetWay(GA->GetBestWay());
 }

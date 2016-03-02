@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     forms/TSP_Map.cpp \
     shared/TSP_Shared.cpp \
     solver/TSP_Solver.cpp \
-    solver/TSP_SolverGA.cpp
+    solver/TSP_SolverGA.cpp \
+    solver/TSP_SolverBB.cpp
 
 HEADERS  += \
     algorithm/TSP_Algorithm.h \
@@ -40,7 +41,8 @@ HEADERS  += \
     forms/TSP_Map.h \
     shared/TSP_Shared.h \
     solver/TSP_Solver.h \
-    solver/TSP_SolverGA.h
+    solver/TSP_SolverGA.h \
+    solver/TSP_SolverBB.h
 
 FORMS    += \
     forms/TSP_MainWindow.ui
