@@ -2,26 +2,31 @@
 #define TSP_SOLVERCOLLECTION_H
 
 #include "TSP_Shared.h"
+#include <QObject>
+#include <QPointer>
 
 class TSP_Solver;
-class TSP_Algorithm;
 class TSP_Map;
 
-enum TSP_Problem
+enum TSP_SolverID
 {
-    Prob_GA,
-    Prob_BB,
-
-    Prob_Count
+    Solver_GA,
+    Solver_BB,
+    //...
+    Solver_Count
 };
 
-class TSP_SolverCollection
+class TSP_SolverCollection : public QObject
 {
+    Q_OBJECT
+
 public:
-    TSP_SolverCollection();
+    TSP_SolverCollection(TSP_Map *pMap);
+    ~TSP_SolverCollection();
 
-    void AddSolver(TSP_Problem iProb);
-
+    TSP_Solver *Fabricate(int ID);
+    void Solve(int ID);
+    void Stop(int ID);
 
 private:
     std::vector<TSP_Solver*>    m_pSolvers;

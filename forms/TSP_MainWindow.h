@@ -6,8 +6,7 @@
 
 class TSP_Canvas;
 class TSP_Map;
-class TSP_SolverGA;
-class TSP_SolverBB;
+class TSP_SolverCollection;
 
 namespace Ui {
 class MainWindow;
@@ -21,27 +20,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
-    void StartGA();
-    void StopGA();
-    void StartBB();
-    void StopBB();
-
 private slots:
     void on_actionStartGA_triggered();
     void on_actionStopGA_triggered();
-
     void on_actionStartBB_triggered();
-
     void on_actionStopBB_triggered();
 
 private:
     Ui::MainWindow      *ui;
     TSP_Canvas          *m_pCanvas;
     TSP_Map             *m_pMap;
-    TSP_SolverGA        *m_pSolverGA;
-    TSP_SolverBB        *m_pSolverBB;
-    //TSP_SolverCollection *m_pSolvers;
+    TSP_SolverCollection *m_pSolvers;
 };
 
 #endif // MAINWINDOW_H
