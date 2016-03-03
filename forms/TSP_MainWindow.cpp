@@ -46,3 +46,26 @@ void MainWindow::on_actionStopBB_triggered()
 {
     m_pSolvers->Stop(Solver_BB);
 }
+
+void MainWindow::on_actionOpen_triggered()
+{
+    if(QFile(QDir::currentPath() + "/../test.dat").exists())
+    {
+        QSettings settings(QDir::currentPath() + "/../test.dat", QSettings::IniFormat);
+        settings.sync();
+        foreach(auto child, settings.childGroups())
+        {
+            settings.beginGroup(child);
+            float x = settings.value("x",0).toFloat();
+            float y = settings.value("y",0).toFloat();
+            settings.endGroup();
+            //qDebug() << child;
+            //qDebug() << x << y;
+            //emit addCity(x, y);
+            m_pMap->addCity(x, y);
+        }
+        m_pCanvas->repaint();
+    }
+    else
+        qDebug() << "not exist";
+}

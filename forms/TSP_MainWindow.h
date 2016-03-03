@@ -26,6 +26,8 @@ private slots:
     void on_actionStartBB_triggered();
     void on_actionStopBB_triggered();
 
+    void on_actionOpen_triggered();
+
 private:
     Ui::MainWindow      *ui;
     TSP_Canvas          *m_pCanvas;

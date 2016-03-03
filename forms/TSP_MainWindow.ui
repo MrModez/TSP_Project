@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>629</height>
+    <width>863</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>806</width>
+     <width>863</width>
      <height>20</height>
     </rect>
    </property>
@@ -31,6 +31,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
    <addaction name="actionStartGA"/>
    <addaction name="actionStopGA"/>
    <addaction name="actionStartBB"/>
@@ -55,6 +56,11 @@
   <action name="actionStopBB">
    <property name="text">
     <string>StopBB</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
    </property>
   </action>
  </widget>
