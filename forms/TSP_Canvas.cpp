@@ -84,7 +84,7 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
         auto city = m_pMap->GetCity(i);
         int x = city.x;
         int y = city.y;
-        int r = 10;
+        int r = 5;
         painter->drawEllipse(x - r , y - r, r * 2, r * 2);
         painter->drawText(x - r, y - r, QString::number(i));
     }

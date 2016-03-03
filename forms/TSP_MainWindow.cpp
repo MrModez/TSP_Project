@@ -1,5 +1,6 @@
 #include "TSP_MainWindow.h"
 #include <QtCore>
+#include <QFileDialog>
 #include "TSP_Map.h"
 #include "TSP_Canvas.h"
 #include "TSP_SolverCollection.h"
@@ -49,21 +50,60 @@ void MainWindow::on_actionStopBB_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    if(QFile(QDir::currentPath() + "/../test.dat").exists())
+    QString fileName = QFileDialog::getOpenFileName(this, "Open TSP","",
+             "Data file (*.dat);;TSP data (*.tsp)");
+    QFileInfo fi(fileName);
+
+    if(QFile(fileName).exists())
     {
-        QSettings settings(QDir::currentPath() + "/../test.dat", QSettings::IniFormat);
-        settings.sync();
-        m_pMap->Erase();
-        foreach(auto child, settings.childGroups())
+        if (fi.suffix() == "dat")
         {
-            settings.beginGroup(child);
-            float x = settings.value("x",0).toFloat();
-            float y = settings.value("y",0).toFloat();
-            settings.endGroup();
-            //qDebug() << child;
-            //qDebug() << x << y;
-            //emit addCity(x, y);
-            m_pMap->addCity(x, y);
+            QSettings settings(fileName, QSettings::IniFormat);
+            settings.sync();
+            m_pMap->Erase();
+            foreach(auto child, settings.childGroups())
+            {
+                settings.beginGroup(child);
+                float x = settings.value("x",0).toFloat();
+                float y = settings.value("y",0).toFloat();
+                settings.endGroup();
+                m_pMap->addCity(x, y);
+            }
+        }
+        else if (fi.suffix() == "tsp")
+        {
+            QFile inputFile(fileName);
+            bool flag = false;
+            if (inputFile.open(QIODevice::ReadOnly))
+            {
+               QTextStream in(&inputFile);
+               while (!in.atEnd())
+               {
+                  QString line = in.readLine();
+                  if (line == "NODE_COORD_SECTION")
+                  {
+                      flag = true;
+                      continue;
+                  }
+                  if (line == "EOF")
+                      break;
+                  if (!flag)
+                      continue;
+                  QStringList lines = line.split(" ");
+                  std::vector<float>coords;
+                  foreach(auto str, lines)
+                  {
+                      if (str == "")
+                          continue;
+                      float num = str.toFloat();
+                      coords.push_back(num);
+                      //qDebug() << num;
+                  }
+                  qDebug() << coords[1] << coords[2];
+                  m_pMap->addCity(coords[1], coords[2]);
+               }
+               inputFile.close();
+            }
         }
         m_pCanvas->repaint();
     }

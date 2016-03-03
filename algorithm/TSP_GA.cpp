@@ -5,6 +5,7 @@
 // =============================================================================
 #include "TSP_GA.h"
 #include "TSP_Map.h"
+#include <time.h>
 
 TSP_GA::TSP_GA() : TSP_Algorithm()
 {
@@ -39,6 +40,8 @@ void TSP_GA::SetSettings(std::vector<float>args)
 ///Algorithm
 void TSP_GA::InitPopulation()
 {
+    srand (time(NULL));
+
     for (int i = 0; i < m_iPopulationSize; i++)
     {
         ga_struct citizen;
@@ -151,7 +154,6 @@ void TSP_GA::Mate()
 #pragma omp parallel for shared(omp_Buffer)
     for (int i = esize; i < m_iPopulationSize; i++)
     {
-        //qDebug("%i", omp_get_thread_num());
         int pos1 = -1, pos2 = -1, i1, i2;
 
         int elit = (m_iPopulationSize * m_fElitRate);

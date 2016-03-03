@@ -169,7 +169,7 @@ void TSP_Map::SetArray(vectorCity array)
 
 void TSP_Map::SetWay(vectorint way)
 {
-    qDebug( "TSP_Map::SetWay" );
+    //qDebug( "TSP_Map::SetWay" );
     m_iWay = way;
     emit Update();
 }
@@ -220,7 +220,7 @@ void TSP_Map::Clear()
 //Signals/Slots stuff
 void TSP_Map::addCity(int newX, int newY)
 {
-    qDebug( "TSP_Map::addCity %i %i", newX, newY );
+    //qDebug( "TSP_Map::addCity %i %i", newX, newY );
     TPoint city(newX, newY);
     Add(city);
     Recount(Size() - 1);
@@ -240,13 +240,13 @@ void TSP_Map::moveCity(int ID, int newX, int newY)
             str += QString::number((int)j) + " ";
         }
         QByteArray bstr = str.toLatin1();
-        qDebug( "%s", bstr.data() );
+        //qDebug( "%s", bstr.data() );
     }
-    qDebug( "" );
+    //qDebug( "" );
 }
 
 void TSP_Map::removeCity(int ID)
 {
-    qDebug( "TSP_Map::removeCity %i", ID );
+    //qDebug( "TSP_Map::removeCity %i", ID );
     Del(ID);
 }
