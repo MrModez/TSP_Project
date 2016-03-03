@@ -25,8 +25,8 @@ protected:
     bool event(QEvent *event) override;
 
 signals:
-    void addCity(int newX, int newY);
-    void moveCity(int ID, int newX, int newY);
+    void addCity(float newX, float newY);
+    void moveCity(int ID, float newX, float newY);
     void removeCity(int ID);
 
 private:

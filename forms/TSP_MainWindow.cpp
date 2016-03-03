@@ -56,11 +56,11 @@ void MainWindow::on_actionOpen_triggered()
 
     if(QFile(fileName).exists())
     {
+        m_pMap->Erase();
         if (fi.suffix() == "dat")
         {
             QSettings settings(fileName, QSettings::IniFormat);
             settings.sync();
-            m_pMap->Erase();
             foreach(auto child, settings.childGroups())
             {
                 settings.beginGroup(child);
@@ -97,7 +97,6 @@ void MainWindow::on_actionOpen_triggered()
                           continue;
                       float num = str.toFloat();
                       coords.push_back(num);
-                      //qDebug() << num;
                   }
                   qDebug() << coords[1] << coords[2];
                   m_pMap->addCity(coords[1], coords[2]);

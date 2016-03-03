@@ -63,7 +63,7 @@ float TSP_Map::Length(City a, City b)
     return (float)sqrt(sqr(a.x - b.x) + sqr(a.y - b.y));
 }
 
-int TSP_Map::GetCityID(int x, int y, int r /*= 10*/)
+int TSP_Map::GetCityID(float x, float y, int r /*= 10*/)
 {
     for (auto i = 0; i < GetArray().size(); i++)
     {
@@ -191,12 +191,12 @@ void TSP_Map::SetBest(int ibest)
     m_iBest = ibest;
 }
 
-void TSP_Map::SetArrayX(int i, int X)
+void TSP_Map::SetArrayX(int i, float X)
 {
     m_Array[i].x = (float)X;
 }
 
-void TSP_Map::SetArrayY(int i, int Y)
+void TSP_Map::SetArrayY(int i, float Y)
 {
     m_Array[i].y = (float)Y;
 }
@@ -218,7 +218,7 @@ void TSP_Map::Clear()
 }
 
 //Signals/Slots stuff
-void TSP_Map::addCity(int newX, int newY)
+void TSP_Map::addCity(float newX, float newY)
 {
     //qDebug( "TSP_Map::addCity %i %i", newX, newY );
     TPoint city(newX, newY);
@@ -226,7 +226,7 @@ void TSP_Map::addCity(int newX, int newY)
     Recount(Size() - 1);
 }
 
-void TSP_Map::moveCity(int ID, int newX, int newY)
+void TSP_Map::moveCity(int ID, float newX, float newY)
 {
     SetArrayX(ID, newX);
     SetArrayY(ID, newY);

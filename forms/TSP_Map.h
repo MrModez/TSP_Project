@@ -23,7 +23,7 @@ public:
     void Erase();
     void Del(int a);
     void MatrixResize(int size);
-    int GetCityID(int x, int y, int r = 10);
+    int GetCityID(float x, float y, int r = 10);
     City GetCity(int ID);
     City GetCityFromWay(int ID);
 
@@ -45,13 +45,13 @@ public:
     void SetArray(vectorCity array);
     void SetRightWay(vectorint rightway);
     void SetBest(int best);
-    void SetArrayX(int i, int X);
-    void SetArrayY(int i, int Y);
+    void SetArrayX(int i, float X);
+    void SetArrayY(int i, float Y);
     void Clear();
 
 public slots:
-    void addCity(int newX, int newY);
-    void moveCity(int ID, int newX, int newY);
+    void addCity(float newX, float newY);
+    void moveCity(int ID, float newX, float newY);
     void removeCity(int ID);
     void SetWay(vectorint way);
     void UpdateInfo(vectorint way, float fit, int id);
