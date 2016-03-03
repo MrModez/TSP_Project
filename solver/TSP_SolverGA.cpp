@@ -18,9 +18,9 @@ TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solve
     //timer->start(1000);
 }
 
-void TSP_SolverGA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
+void TSP_SolverGA::SetSettings(std::vector<float>args)
 {
-    GA->SetSettings(iPopsize, fElitrate, fMutation, fSupmutation);
+    GA->SetSettings(args);
 }
 
 void TSP_SolverGA::Execute()

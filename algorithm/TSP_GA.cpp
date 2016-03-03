@@ -27,12 +27,13 @@ float TSP_GA::GetBestFitness()
     return m_Population[0].fitness;
 }
 
-void TSP_GA::SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation)
+void TSP_GA::SetSettings(std::vector<float>args)
 {
-    m_iPopulationSize = iPopsize;
-    m_fElitRate = fElitrate;
-    m_fMutationRate = fMutation;
-    m_fMutationSupRate = fSupmutation;
+    m_iPopulationSize = args[0];
+    m_fElitRate = args[1];
+    m_fMutationRate = args[2];
+    m_fMutationMoveRate = args[3];
+    m_fMutationSupRate = args[4];
 }
 
 ///Algorithm
@@ -106,17 +107,21 @@ double TSP_GA::WayLength(std::vector<int>way, int pos1, int pos2)
 
 void TSP_GA::Mutate(ga_struct &member)
 {
-    int pos1 = rand() % (m_iSize - 2) + 1;
-    int pos2 = rand() % (m_iSize - 2) + 1;
-    int temp = member.way[pos1];
-    member.way[pos1] = member.way[pos2];
-    member.way[pos2] = temp;
+    int times = rand() % m_iSize;
+    for (int i = 0; i < times; i++)
+    {
+        int pos1 = rand() % (m_iSize - 1) + 1;
+        int pos2 = rand() % (m_iSize - 1) + 1;
+        int temp = member.way[pos1];
+        member.way[pos1] = member.way[pos2];
+        member.way[pos2] = temp;
+    }
 }
 
 void TSP_GA::Mutate_move(ga_struct &member)
 {
-    int pos1 = rand() % (m_iSize - 2) + 1;
-    int pos2 = rand() % (m_iSize - 2) + 1;
+    int pos1 = rand() % (m_iSize - 1) + 1;
+    int pos2 = rand() % (m_iSize - 1) + 1;
     int temp = member.way[pos1];
     member.way.erase(member.way.begin()+pos1);
     member.way.insert(member.way.begin()+pos2, temp);
@@ -126,8 +131,8 @@ void TSP_GA::Mutate_move(ga_struct &member)
 
 void TSP_GA::SupMutate(ga_struct &member)
 {
-    int pos1 = rand() % (m_iSize - 2) + 1;
-    int pos2 = rand() % (m_iSize - 2) + 1;
+    int pos1 = rand() % (m_iSize - 1) + 1;
+    int pos2 = rand() % (m_iSize - 1) + 1;
     if (pos1 > pos2)
     {
         std::swap(pos1, pos2);
@@ -247,13 +252,11 @@ void TSP_GA::Mate()
         if (rnd < m_fMutationRate)
         {
             Mutate(omp_Buffer[i]);
-        }
-        /*
-        else if (rand() < m_fMutationRate)
+        }        
+        else if (rnd < m_fMutationMoveRate)
         {
             Mutate_move(omp_Buffer[i]);
-        }
-        */
+        }        
         else if (rnd < m_fMutationSupRate)
         {
             SupMutate(omp_Buffer[i]);

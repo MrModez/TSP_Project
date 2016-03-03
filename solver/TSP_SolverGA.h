@@ -18,7 +18,7 @@ class TSP_SolverGA : public TSP_Solver
 public:
     TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap);
     virtual void Execute();
-    void SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation);
+    void SetSettings(std::vector<float> args);
 
 public slots:
     virtual void StartAlgorithm();

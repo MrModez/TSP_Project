@@ -53,6 +53,7 @@ void MainWindow::on_actionOpen_triggered()
     {
         QSettings settings(QDir::currentPath() + "/../test.dat", QSettings::IniFormat);
         settings.sync();
+        m_pMap->Erase();
         foreach(auto child, settings.childGroups())
         {
             settings.beginGroup(child);

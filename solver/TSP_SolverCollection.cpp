@@ -48,11 +48,8 @@ void TSP_SolverCollection::Solve(int ID)
 
     if (ID == Solver_GA)
     {
-        int pop = 10000;
-        float elit = 0.001f;
-        float mut = 0.55f;
-        float supmut = 0.75f;
-        dynamic_cast<TSP_SolverGA*>(m_pSolvers[ID])->SetSettings(pop, elit, mut, supmut);
+        std::vector<float>arg{10000, 0.001f, 0.20f, 0.55f, 0.75f};
+        dynamic_cast<TSP_SolverGA*>(m_pSolvers[ID])->SetSettings(arg);
     }
 
     pSovlerThread->start();

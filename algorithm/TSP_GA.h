@@ -24,7 +24,7 @@ public:
     virtual vectorint GetBestWay();
     virtual float GetBestFitness();
 
-    void SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation);
+    void SetSettings(std::vector<float>args);//int iPopsize, float fElitrate, float fMutation, float fSupmutation);
     void InitPopulation();
     void CalcFitness();
     bool FitnessSort(ga_struct x, ga_struct y);
@@ -42,6 +42,7 @@ private:
     int         m_iPopulationSize;
     float       m_fElitRate;
     float       m_fMutationRate;
+    float       m_fMutationMoveRate;
     float       m_fMutationSupRate;
     ga_vector   m_Population;
     ga_vector   m_Buffer;
