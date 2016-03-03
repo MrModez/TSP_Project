@@ -60,11 +60,9 @@ void TSP_GA::InitPopulation()
 
 void TSP_GA::CalcFitness()
 {
-    float m_fFitness;
-
     for (int i = 0; i < m_iPopulationSize; i++)
     {
-        m_fFitness = 0.0f;
+        float m_fFitness = 0.0f;
         for (int j = 0; j < m_iSize; j++)
         {
             int a1 = m_Population[i].way[j];
@@ -122,10 +120,8 @@ void TSP_GA::Mutate_move(ga_struct &member)
     int temp = member.way[pos1];
     member.way.erase(member.way.begin()+pos1);
     member.way.insert(member.way.begin()+pos2, temp);
-
-    //int temp = member.way[pos1];
-   // member.way[pos1] = member.way[pos2];
-   // member.way[pos2] = temp;
+    //member.way[pos1] = member.way[pos2];
+    //member.way[pos2] = temp;
 }
 
 void TSP_GA::SupMutate(ga_struct &member)
@@ -246,15 +242,19 @@ void TSP_GA::Mate()
         }
         omp_Buffer[i].way.push_back(0);
 
-        if (rand() < m_fMutationRate)
+        float rnd = rand() / (float)RAND_MAX;
+
+        if (rnd < m_fMutationRate)
         {
             Mutate(omp_Buffer[i]);
         }
+        /*
         else if (rand() < m_fMutationRate)
         {
             Mutate_move(omp_Buffer[i]);
         }
-        else if (rand() < m_fMutationSupRate)
+        */
+        else if (rnd < m_fMutationSupRate)
         {
             SupMutate(omp_Buffer[i]);
         }

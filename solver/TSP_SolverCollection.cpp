@@ -48,7 +48,7 @@ void TSP_SolverCollection::Solve(int ID)
 
     if (ID == Solver_GA)
     {
-        int pop = 100000;
+        int pop = 10000;
         float elit = 0.001f;
         float mut = 0.55f;
         float supmut = 0.75f;
