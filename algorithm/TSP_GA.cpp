@@ -125,8 +125,6 @@ void TSP_GA::Mutate_move(ga_struct &member)
     int temp = member.way[pos1];
     member.way.erase(member.way.begin()+pos1);
     member.way.insert(member.way.begin()+pos2, temp);
-    //member.way[pos1] = member.way[pos2];
-    //member.way[pos2] = temp;
 }
 
 void TSP_GA::SupMutate(ga_struct &member)
@@ -147,12 +145,7 @@ void TSP_GA::Mate()
 {
     int esize = m_iPopulationSize * m_fElitRate;
     Elitism(esize);
-
     std::vector<ga_struct> omp_Buffer = m_Buffer;
-    //omp_Buffer.
-    //omp_Buffer.resize(m_Buffer.size());
-   // for (int i = 0; i < m_Buffer.size(); i++)
-    //    omp_Buffer[i] = m_Buffer[i];
 
     // Mate the rest
 #pragma omp parallel for shared(omp_Buffer)
@@ -162,7 +155,7 @@ void TSP_GA::Mate()
         int pos1 = -1, pos2 = -1, i1, i2;
 
         int elit = (m_iPopulationSize * m_fElitRate);
-        i1 = rand() % elit;//(int)(m_iPopulationSize / 2.0);
+        i1 = rand() % elit;
         i2 = (rand() % (m_iPopulationSize - elit)) + elit;
 
         pos1 = rand() % m_iSize;
@@ -263,9 +256,6 @@ void TSP_GA::Mate()
         }
 
     }
-
-   // for (int i = 0; i < m_Buffer.size(); i++)
-    //    m_Buffer[i] = omp_Buffer[i];
     m_Buffer = omp_Buffer;
 }
 

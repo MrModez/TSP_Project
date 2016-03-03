@@ -174,6 +174,13 @@ void TSP_Map::SetWay(vectorint way)
     emit Update();
 }
 
+void TSP_Map::UpdateInfo(vectorint way, float fit, int id)
+{
+    SetFitness(fit);
+    SetIteration(id);
+    SetWay(way);
+}
+
 void TSP_Map::SetRightWay(vectorint rightway)
 {
     m_iRightWay = rightway;

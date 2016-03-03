@@ -52,7 +52,7 @@ void TSP_SolverGA::Execute()
         QByteArray bstr = str.toLatin1();
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
-        emit updateWay(best);
+        emit updateInfo(best, fit, index);
         //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
         GA->Mate();

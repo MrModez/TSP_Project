@@ -60,6 +60,11 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     painter->setBrush(brush);
     painter->setPen(pen);
 
+    QString str = "Iteration: " + QString::number(m_pMap->GetIteration());
+    painter->drawText(QPoint(20, 20), str);
+    str = "Fitness: " + QString::number(m_pMap->GetFitness());
+    painter->drawText(QPoint(20, 40), str);
+
     if (m_pMap->GetWay().size() > 0)
     {
         for (auto k = 0; k < m_pMap->GetWay().size() - 1; k++)

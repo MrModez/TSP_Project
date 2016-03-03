@@ -40,7 +40,7 @@ void TSP_SolverCollection::Solve(int ID)
     m_pSolvers[ID]->moveToThread(pSovlerThread);
 
     qRegisterMetaType<vectorint>("vectorint");
-    connect(m_pSolvers[ID], &TSP_Solver::updateWay,  m_pMap, &TSP_Map::SetWay);
+    connect(m_pSolvers[ID], &TSP_Solver::updateInfo,  m_pMap, &TSP_Map::UpdateInfo);
     connect(pSovlerThread, &QThread::started, m_pSolvers[ID], &TSP_Solver::StartAlgorithm);
     connect(m_pSolvers[ID], &TSP_Solver::finished, pSovlerThread, &QThread::quit);
     connect(m_pSolvers[ID], &TSP_Solver::finished, m_pSolvers[ID], &TSP_Solver::deleteLater);

@@ -27,7 +27,7 @@ public slots:
     virtual void Update(){}
 
 signals:
-    void updateWay(vectorint vec);
+    void updateInfo(vectorint vec, float fit, int id);
     void finished();
 
 protected:

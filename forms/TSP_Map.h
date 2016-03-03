@@ -54,6 +54,7 @@ public slots:
     void moveCity(int ID, int newX, int newY);
     void removeCity(int ID);
     void SetWay(vectorint way);
+    void UpdateInfo(vectorint way, float fit, int id);
 
 signals:
     void Update();
