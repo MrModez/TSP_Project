@@ -25,7 +25,7 @@ public:
     void MatrixResize(int size);
     int GetCityID(float x, float y, int r = 10);
     City GetCity(int ID);
-    City GetCityFromWay(int ID);
+    City GetCityFromWay(std::vector<int>Way, int ID);
 
     float Length(City a, City b);
     void Recount(int a);
@@ -34,20 +34,21 @@ public:
     int GetFitness();
     vectorCity GetArray();
     vectorint GetWay();
-    vectorint GetRightWay();
+    vectorint GetBestWay();
     std::vector<vectorfloat> GetMatrix();
-    int GetBest();
+    int GetBestFitness();
     float GetMatrix(int i, int j);
     bool CheckEqual(vectorint Way);
 
     void SetIteration(int iteration);
     void SetFitness(int fitness);
     void SetArray(vectorCity array);
-    void SetRightWay(vectorint rightway);
-    void SetBest(int best);
+    void SetBest(vectorint way, float fit);
     void SetArrayX(int i, float X);
     void SetArrayY(int i, float Y);
+
     void Clear();
+    int ClearBest();
 
 public slots:
     void addCity(float newX, float newY);
@@ -62,13 +63,13 @@ signals:
 protected:
     int m_iIteration;
     int m_iFitness;
-    int m_iBest;
+    int m_iBestFitness;
     bool m_bShow;
 
     std::vector<vectorfloat>m_fMatrix;
     vectorCity m_Array;
     vectorint m_iWay;
-    vectorint m_iRightWay;
+    vectorint m_iBestWay;
 };
 
 #endif // TSP_MAP_H

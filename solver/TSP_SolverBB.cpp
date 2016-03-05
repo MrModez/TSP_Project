@@ -22,22 +22,13 @@ void TSP_SolverBB::Execute()
 {
     BB->SetArray(m_pMap->GetArray());
     BB->Reset();
-    //BB->InitPopulation();
-    qDebug("GA RUN");
+    qDebug("BB RUN");
 
     int index = 0;
     while (!m_bStop)
     {
         qDebug("BB %i:", index++);
         BB->Start();
-
-        //m_Mutex.lock();
-        //if (this->m_bStop) break;
-        //m_Mutex.unlock();
-
-        //BB->NextIteration();
-        //BB->CalcFitness();
-        //BB->SortByFitness();
 
         vectorint best = BB->GetBestWay();
         float fit = BB->GetBestFitness();
@@ -50,10 +41,7 @@ void TSP_SolverBB::Execute()
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
         emit updateInfo(best, fit, index);
-        //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
-        //BB->Mate();
-        //BB->Swap();
         StopAlgorithm();
     }
     emit finished();

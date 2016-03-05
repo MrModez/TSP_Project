@@ -7,11 +7,11 @@
 
 TSP_Map::TSP_Map() : QObject()
 {
-    m_iBest = INT_MAX;
+    m_iBestFitness = INT_MAX;
     m_bShow = false;
     m_Array.clear();
     m_iWay.clear();
-    m_iRightWay.clear();
+    m_iBestWay.clear();
     m_fMatrix.clear();
 }
 
@@ -76,14 +76,14 @@ int TSP_Map::GetCityID(float x, float y, int r /*= 10*/)
     return -1;
 }
 
-TPoint TSP_Map::GetCity(int ID)
+City TSP_Map::GetCity(int ID)
 {
     return m_Array[ID];
 }
 
-TPoint TSP_Map::GetCityFromWay(int ID)
+City TSP_Map::GetCityFromWay(std::vector<int>Way, int ID)
 {
-    return m_Array[m_iWay[ID]];
+    return m_Array[Way[ID]];
 }
 
 void TSP_Map::Recount(int a)
@@ -120,9 +120,9 @@ vectorint TSP_Map::GetWay()
     return m_iWay;
 }
 
-vectorint TSP_Map::GetRightWay()
+vectorint TSP_Map::GetBestWay()
 {
-    return m_iRightWay;
+    return m_iBestWay;
 }
 
 std::vector<vectorfloat> TSP_Map::GetMatrix()
@@ -130,9 +130,9 @@ std::vector<vectorfloat> TSP_Map::GetMatrix()
     return m_fMatrix;
 }
 
-int TSP_Map::GetBest()
+int TSP_Map::GetBestFitness()
 {
-    return m_iBest;
+    return m_iBestFitness;
 }
 
 float TSP_Map::GetMatrix(int i, int j)
@@ -142,10 +142,10 @@ float TSP_Map::GetMatrix(int i, int j)
 
 bool TSP_Map::CheckEqual(vectorint SWay)
 {
-    if (m_iRightWay == SWay)
+    if (m_iBestWay == SWay)
         return true;
     std::reverse(SWay.begin(), SWay.end());
-    if (m_iRightWay == SWay)
+    if (m_iBestWay == SWay)
         return true;
     return false;
 };
@@ -179,16 +179,14 @@ void TSP_Map::UpdateInfo(vectorint way, float fit, int id)
     SetFitness(fit);
     SetIteration(id);
     SetWay(way);
+    if (fit < GetBestFitness())
+        SetBest(way, fit);
 }
 
-void TSP_Map::SetRightWay(vectorint rightway)
+void TSP_Map::SetBest(vectorint way, float fit)
 {
-    m_iRightWay = rightway;
-}
-
-void TSP_Map::SetBest(int ibest)
-{
-    m_iBest = ibest;
+    m_iBestFitness = fit;
+    m_iBestWay = way;
 }
 
 void TSP_Map::SetArrayX(int i, float X)
@@ -210,11 +208,17 @@ void TSP_Map::Clear()
             m_fMatrix[i][j] = 0.0;
         }
     }
-    m_iBest = INT_MAX;
+    m_iBestFitness = INT_MAX;
     m_bShow = false;
     m_Array.clear();
     m_iWay.clear();
-    m_iRightWay.clear();
+    m_iBestWay.clear();
+}
+
+int TSP_Map::ClearBest()
+{
+    m_iBestFitness = INT_MAX;
+    m_iBestWay.clear();
 }
 
 //Signals/Slots stuff
@@ -224,6 +228,7 @@ void TSP_Map::addCity(float newX, float newY)
     TPoint city(newX, newY);
     Add(city);
     Recount(Size() - 1);
+    ClearBest();
 }
 
 void TSP_Map::moveCity(int ID, float newX, float newY)
@@ -242,6 +247,7 @@ void TSP_Map::moveCity(int ID, float newX, float newY)
         QByteArray bstr = str.toLatin1();
         //qDebug( "%s", bstr.data() );
     }
+    ClearBest();
     //qDebug( "" );
 }
 
@@ -249,4 +255,5 @@ void TSP_Map::removeCity(int ID)
 {
     //qDebug( "TSP_Map::removeCity %i", ID );
     Del(ID);
+    ClearBest();
 }

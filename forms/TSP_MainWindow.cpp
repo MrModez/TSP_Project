@@ -28,24 +28,36 @@ MainWindow::~MainWindow()
     delete m_pCanvas;
 }
 
-void MainWindow::on_actionStartGA_triggered()
+void MainWindow::on_actionStartGA_toggled(bool arg1)
 {
-    m_pSolvers->Solve(Solver_GA);
+    if (arg1)
+    {
+        m_pSolvers->Solve(Solver_GA);
+        ui->actionStartGA->setText("StopGA");
+    }
+    else
+    {
+        //QPixmap pixmap(m_pCanvas->size());
+        //m_pCanvas->render(&pixmap);
+        //pixmap.save("test.png");
+        m_pSolvers->Stop(Solver_GA);
+        ui->actionStartGA->setText("StartGA");
+    }
 }
 
-void MainWindow::on_actionStopGA_triggered()
+void MainWindow::on_actionStartBB_toggled(bool arg1)
 {
-    m_pSolvers->Stop(Solver_GA);
-}
+    if (arg1)
+    {
+        m_pSolvers->Solve(Solver_BB);
+        ui->actionStartBB->setText("StopBB");
+    }
+    else
+    {
+        m_pSolvers->Stop(Solver_BB);
+        ui->actionStartBB->setText("StartGA");
+    }
 
-void MainWindow::on_actionStartBB_triggered()
-{
-    m_pSolvers->Solve(Solver_BB);
-}
-
-void MainWindow::on_actionStopBB_triggered()
-{
-    m_pSolvers->Stop(Solver_BB);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -108,4 +120,9 @@ void MainWindow::on_actionOpen_triggered()
     }
     else
         qDebug() << "not exist";
+}
+
+void MainWindow::on_actionShowBestResult_toggled(bool arg1)
+{
+    m_pCanvas->ShowBest(arg1);
 }

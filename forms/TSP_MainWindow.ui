@@ -33,34 +33,37 @@
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionStartGA"/>
-   <addaction name="actionStopGA"/>
    <addaction name="actionStartBB"/>
-   <addaction name="actionStopBB"/>
+   <addaction name="actionShowBestResult"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStartGA">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>StartGA</string>
    </property>
   </action>
-  <action name="actionStopGA">
-   <property name="text">
-    <string>StopGA</string>
-   </property>
-  </action>
   <action name="actionStartBB">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>StartBB</string>
-   </property>
-  </action>
-  <action name="actionStopBB">
-   <property name="text">
-    <string>StopBB</string>
    </property>
   </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionShowBestResult">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ShowBestResult</string>
    </property>
   </action>
  </widget>
