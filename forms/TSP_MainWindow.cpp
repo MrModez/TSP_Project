@@ -55,7 +55,7 @@ void MainWindow::on_actionStartBB_toggled(bool arg1)
     else
     {
         m_pSolvers->Stop(Solver_BB);
-        ui->actionStartBB->setText("StartGA");
+        ui->actionStartBB->setText("StartBB");
     }
 
 }
