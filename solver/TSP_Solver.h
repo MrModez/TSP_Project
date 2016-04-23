@@ -22,8 +22,11 @@ public:
     virtual void Execute();
 
 public slots:
-    virtual void StartAlgorithm(){}
-    virtual void StopAlgorithm(){}
+    virtual void StartAlgorithm();
+    virtual void StopAlgorithm();
+    virtual void PauseAlgorithm();
+    virtual void ContinueAlgorithm();
+    virtual bool IsWorking();
     virtual void Update(){}
 
 signals:
@@ -34,6 +37,7 @@ protected:
     TSP_Algorithm *m_pAlgorithm;
     TSP_Map     *m_pMap;
     bool        m_bStop;
+    bool        m_bPaused;
 };
 
 #endif // TSP_SOLVER_H

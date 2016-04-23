@@ -25,8 +25,11 @@ public:
     ~TSP_SolverCollection();
 
     TSP_Solver *Fabricate(int ID);
-    void Solve(int ID);
+    void Solve(int ID, std::vector<float> arg);
     void Stop(int ID);
+    void Pause(int ID);
+    void Continue(int ID);
+    bool IsWorking(int ID);
 
 private:
     std::vector<TSP_Solver*>    m_pSolvers;

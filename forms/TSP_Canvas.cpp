@@ -26,11 +26,13 @@ TSP_Canvas::~TSP_Canvas()
 void TSP_Canvas::setMap(TSP_Map *map)
 {
     m_pMap = map;
+    repaint();
 }
 
 void TSP_Canvas::ShowBest(bool state)
 {
     m_bDrawBest = state;
+    repaint();
 }
 
 void TSP_Canvas::setBackgroundColor(QColor val)

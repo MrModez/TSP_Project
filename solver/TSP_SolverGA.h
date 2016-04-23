@@ -21,8 +21,6 @@ public:
     void SetSettings(std::vector<float> args);
 
 public slots:
-    virtual void StartAlgorithm();
-    virtual void StopAlgorithm();
     virtual void Update();
 
 signals:

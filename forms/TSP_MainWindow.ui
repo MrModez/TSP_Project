@@ -6,35 +6,344 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>863</width>
-    <height>501</height>
+    <width>783</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tabGA">
+          <attribute name="title">
+           <string>Генетический алгоритм</string>
+          </attribute>
+          <widget class="QPushButton" name="StartGABut">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>20</y>
+             <width>32</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="StopGABut">
+           <property name="geometry">
+            <rect>
+             <x>60</x>
+             <y>20</y>
+             <width>32</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>[]</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox">
+           <property name="geometry">
+            <rect>
+             <x>400</x>
+             <y>20</y>
+             <width>61</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="maximum">
+            <number>100000</number>
+           </property>
+           <property name="value">
+            <number>5000</number>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox_2">
+           <property name="geometry">
+            <rect>
+             <x>400</x>
+             <y>40</y>
+             <width>61</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox_3">
+           <property name="geometry">
+            <rect>
+             <x>540</x>
+             <y>10</y>
+             <width>41</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>20</number>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox_4">
+           <property name="geometry">
+            <rect>
+             <x>540</x>
+             <y>30</y>
+             <width>41</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>55</number>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox_5">
+           <property name="geometry">
+            <rect>
+             <x>540</x>
+             <y>50</y>
+             <width>41</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>75</number>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>20</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Размер популяции</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>40</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Элитарность</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_3">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>10</y>
+             <width>61</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Мутация 1</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_4">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>30</y>
+             <width>61</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Мутация 2</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_5">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>50</y>
+             <width>61</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Мутация 3</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tabBB">
+          <attribute name="title">
+           <string>Метод ветвей и границ</string>
+          </attribute>
+          <widget class="QPushButton" name="StartBBBut">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>30</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Start</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="ShowBestBut">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Start</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>863</width>
+     <width>783</width>
      <height>20</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionOpen"/>
-   <addaction name="actionStartGA"/>
-   <addaction name="actionStartBB"/>
-   <addaction name="actionShowBestResult"/>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen_1"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Правка</string>
+    </property>
+    <addaction name="actionClear"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStartGA">
@@ -66,8 +375,124 @@
     <string>ShowBestResult</string>
    </property>
   </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>Новый...</string>
+   </property>
+  </action>
+  <action name="actionOpen_1">
+   <property name="text">
+    <string>Открыть...</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Сохранить граф</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Сохранить как...</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>О программе...</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Очистить граф</string>
+   </property>
+  </action>
+  <action name="actionStopGA">
+   <property name="text">
+    <string>StopGA</string>
+   </property>
+   <property name="toolTip">
+    <string>StopGA</string>
+   </property>
+  </action>
+  <action name="actionStopBB">
+   <property name="text">
+    <string>StopBB</string>
+   </property>
+   <property name="toolTip">
+    <string>StopBB</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>StartGABut</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionStartGA</receiver>
+   <slot>toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>419</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen_1</sender>
+   <signal>triggered()</signal>
+   <receiver>actionOpen</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ShowBestBut</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionShowBestResult</receiver>
+   <slot>toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>289</x>
+     <y>419</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>StopGABut</sender>
+   <signal>pressed()</signal>
+   <receiver>actionStopGA</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

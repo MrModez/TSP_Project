@@ -12,13 +12,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     m_pMap = new TSP_Map();
     m_pSolvers = new TSP_SolverCollection(m_pMap);
-    m_pCanvas = new TSP_Canvas(this, m_pMap);
+    m_pCanvas = new TSP_Canvas(ui->centralWidget, m_pMap);
 
     connect(m_pCanvas, &TSP_Canvas::addCity, m_pMap, &TSP_Map::addCity);
     connect(m_pCanvas, &TSP_Canvas::moveCity, m_pMap, &TSP_Map::moveCity);
     connect(m_pCanvas, &TSP_Canvas::removeCity, m_pMap, &TSP_Map::removeCity);
 
-    setCentralWidget(m_pCanvas);
+    ui->verticalLayout->addWidget(m_pCanvas);
 }
 
 MainWindow::~MainWindow()
@@ -32,24 +32,44 @@ void MainWindow::on_actionStartGA_toggled(bool arg1)
 {
     if (arg1)
     {
-        m_pSolvers->Solve(Solver_GA);
-        ui->actionStartGA->setText("StopGA");
+        if (m_pSolvers->IsWorking(Solver_GA))
+            m_pSolvers->Continue(Solver_GA);
+        else
+        {
+            std::vector<float>arg{(float)ui->spinBox->value(), (float)ui->spinBox_2->value()/100.0f,
+                        (float)ui->spinBox_3->value()/100.0f, (float)ui->spinBox_4->value()/100.0f, (float)ui->spinBox_5->value()/100.0f};
+            m_pSolvers->Solve(Solver_GA, arg);
+        }
+        ui->StartGABut->setText("II");
     }
     else
     {
-        //QPixmap pixmap(m_pCanvas->size());
-        //m_pCanvas->render(&pixmap);
-        //pixmap.save("test.png");
-        m_pSolvers->Stop(Solver_GA);
-        ui->actionStartGA->setText("StartGA");
+        m_pSolvers->Pause(Solver_GA);
+        ui->StartGABut->setText(">");
     }
 }
+
+void MainWindow::on_actionStopGA_triggered()
+{
+    m_pSolvers->Continue(Solver_GA);
+    m_pSolvers->Stop(Solver_GA);
+    ui->StartGABut->setText(">");
+}
+
+void MainWindow::on_actionStopBB_triggered()
+{
+    m_pSolvers->Continue(Solver_BB);
+    m_pSolvers->Stop(Solver_BB);
+    ui->StartBBBut->setText(">");
+}
+
 
 void MainWindow::on_actionStartBB_toggled(bool arg1)
 {
     if (arg1)
     {
-        m_pSolvers->Solve(Solver_BB);
+        std::vector<float>arg;
+        m_pSolvers->Solve(Solver_BB, arg);
         ui->actionStartBB->setText("StopBB");
     }
     else
@@ -103,14 +123,14 @@ void MainWindow::on_actionOpen_triggered()
                       continue;
                   QStringList lines = line.split(" ");
                   std::vector<float>coords;
-                  foreach(auto str, lines)
+                  for (auto &str : lines)
                   {
                       if (str == "")
                           continue;
                       float num = str.toFloat();
                       coords.push_back(num);
                   }
-                  qDebug() << coords[1] << coords[2];
+                  //qDebug() << coords[1] << coords[2];
                   m_pMap->addCity(coords[1], coords[2]);
                }
                inputFile.close();

@@ -44,20 +44,8 @@ void TSP_SolverBB::Execute()
 
         StopAlgorithm();
     }
-    emit finished();
-}
-
-void TSP_SolverBB::StartAlgorithm()
-{
-    qDebug("TSP_SolverBB::StartBB");
-    m_bStop = false;
-    Execute();
-}
-
-void TSP_SolverBB::StopAlgorithm()
-{
-    qDebug("TSP_SolverBB::StopBB");
     m_bStop = true;
+    emit finished();
 }
 
 void TSP_SolverBB::Update()

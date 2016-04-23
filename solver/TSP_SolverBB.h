@@ -21,8 +21,6 @@ public:
     //void SetSettings(int iPopsize, float fElitrate, float fMutation, float fSupmutation);
 
 public slots:
-    virtual void StartAlgorithm();
-    virtual void StopAlgorithm();
     virtual void Update();
 
 signals:

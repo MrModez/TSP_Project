@@ -33,9 +33,8 @@ void TSP_SolverGA::Execute()
     int index = 0;
     while (!m_bStop)
     {
-        //m_Mutex.lock();
-        //if (this->m_bStop) break;
-        //m_Mutex.unlock();
+        if (m_bPaused)
+            continue;
 
         qDebug("GA %i:", index++);
         GA->NextIteration();
@@ -53,25 +52,12 @@ void TSP_SolverGA::Execute()
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
         emit updateInfo(best, fit, index);
-        //QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
 
         GA->Mate();
         GA->Swap();
     }
-    emit finished();
-}
-
-void TSP_SolverGA::StartAlgorithm()
-{
-    qDebug("TSP_SolverGA::StartGA");
-    m_bStop = false;
-    Execute();
-}
-
-void TSP_SolverGA::StopAlgorithm()
-{
-    qDebug("TSP_SolverGA::StopGA");
     m_bStop = true;
+    emit finished();
 }
 
 void TSP_SolverGA::Update()

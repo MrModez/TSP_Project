@@ -31,7 +31,7 @@ TSP_Solver *TSP_SolverCollection::Fabricate(int ID)
     return NULL;
 }
 
-void TSP_SolverCollection::Solve(int ID)
+void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
 {
     qDebug("Solving %i", ID);
 
@@ -48,12 +48,31 @@ void TSP_SolverCollection::Solve(int ID)
 
     if (ID == Solver_GA)
     {
-        std::vector<float>arg{10000, 0.001f, 0.20f, 0.55f, 0.75f};
+        //std::vector<float>arg{10000, 0.001f, 0.20f, 0.55f, 0.75f};
         dynamic_cast<TSP_SolverGA*>(m_pSolvers[ID])->SetSettings(arg);
     }
 
     pSovlerThread->start();
 }
+
+void TSP_SolverCollection::Pause(int ID)
+{
+    qDebug("Pausing %i", ID);
+    if (m_pSolvers[ID])
+    {
+        m_pSolvers[ID]->PauseAlgorithm();
+    }
+}
+
+void TSP_SolverCollection::Continue(int ID)
+{
+    qDebug("Continuing %i", ID);
+    if (m_pSolvers[ID])
+    {
+        m_pSolvers[ID]->ContinueAlgorithm();
+    }
+}
+
 
 void TSP_SolverCollection::Stop(int ID)
 {
@@ -62,4 +81,13 @@ void TSP_SolverCollection::Stop(int ID)
     {
         m_pSolvers[ID]->StopAlgorithm();
     }
+}
+
+bool TSP_SolverCollection::IsWorking(int ID)
+{
+    if (m_pSolvers[ID])
+    {
+        return m_pSolvers[ID]->IsWorking();
+    }
+    return false;
 }

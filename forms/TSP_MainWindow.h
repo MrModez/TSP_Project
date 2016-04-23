@@ -23,9 +23,10 @@ public:
 private slots:
     void on_actionStartGA_toggled(bool arg1);
     void on_actionStartBB_toggled(bool arg1);
+    void on_actionStopGA_triggered();
+    void on_actionStopBB_triggered();
     void on_actionOpen_triggered();
     void on_actionShowBestResult_toggled(bool arg1);
-
 
 private:
     Ui::MainWindow      *ui;
