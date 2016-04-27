@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(m_pCanvas, &TSP_Canvas::moveCity, m_pMap, &TSP_Map::moveCity);
     connect(m_pCanvas, &TSP_Canvas::removeCity, m_pMap, &TSP_Map::removeCity);
 
+    setFileName("");
     ui->verticalLayout->addWidget(m_pCanvas);
 }
 
@@ -40,27 +41,21 @@ void MainWindow::on_actionStartGA_toggled(bool arg1)
                         (float)ui->spinBox_3->value()/100.0f, (float)ui->spinBox_4->value()/100.0f, (float)ui->spinBox_5->value()/100.0f};
             m_pSolvers->Solve(Solver_GA, arg);
         }
-        ui->StartGABut->setText("II");
+        ui->StartGABut->setText("Пауза");
     }
     else
     {
         m_pSolvers->Pause(Solver_GA);
-        ui->StartGABut->setText(">");
+        ui->StartGABut->setText("Старт");
     }
+    setWorking(arg1);
 }
 
 void MainWindow::on_actionStopGA_triggered()
 {
     m_pSolvers->Continue(Solver_GA);
     m_pSolvers->Stop(Solver_GA);
-    ui->StartGABut->setText(">");
-}
-
-void MainWindow::on_actionStopBB_triggered()
-{
-    m_pSolvers->Continue(Solver_BB);
-    m_pSolvers->Stop(Solver_BB);
-    ui->StartBBBut->setText(">");
+    ui->StartGABut->setChecked(false);
 }
 
 
@@ -80,6 +75,13 @@ void MainWindow::on_actionStartBB_toggled(bool arg1)
 
 }
 
+void MainWindow::on_actionStopBB_triggered()
+{
+    m_pSolvers->Continue(Solver_BB);
+    m_pSolvers->Stop(Solver_BB);
+    ui->StartBBBut->setText(">");
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Open TSP","",
@@ -93,7 +95,7 @@ void MainWindow::on_actionOpen_triggered()
         {
             QSettings settings(fileName, QSettings::IniFormat);
             settings.sync();
-            foreach(auto child, settings.childGroups())
+            for (auto &child : settings.childGroups())
             {
                 settings.beginGroup(child);
                 float x = settings.value("x",0).toFloat();
@@ -101,6 +103,7 @@ void MainWindow::on_actionOpen_triggered()
                 settings.endGroup();
                 m_pMap->addCity(x, y);
             }
+            setFileName(fileName);
         }
         else if (fi.suffix() == "tsp")
         {
@@ -145,4 +148,81 @@ void MainWindow::on_actionOpen_triggered()
 void MainWindow::on_actionShowBestResult_toggled(bool arg1)
 {
     m_pCanvas->ShowBest(arg1);
+}
+
+void MainWindow::setFileName(QString name)
+{
+    if (!name.isEmpty())
+    {
+        QFileInfo fi(name);
+        this->setWindowTitle("TSP_Project - " + fi.fileName());
+    }
+    else
+    {
+        this->setWindowTitle("TSP_Project");
+    }
+    Filename = name;
+}
+
+void MainWindow::setWorking(bool flag)
+{
+    working = flag;
+    menuBar()->setEnabled(!flag);
+    m_pCanvas->setEnabled(!flag);
+}
+
+
+void MainWindow::on_actionNew_triggered()
+{
+    m_pMap->Clear();
+    setFileName("");
+    setWorking(false);
+}
+
+void MainWindow::saveTSP(QString fileName)
+{
+    if (!fileName.isEmpty())
+    {
+        QSettings settings(fileName, QSettings::IniFormat);
+        settings.clear();
+        int count = 0;
+        for (auto &city : m_pMap->GetArray())
+        {
+            settings.beginGroup("Point" + QString::number(count++));
+            settings.setValue("x", (int)city.x);
+            settings.setValue("y", (int)city.y);
+            settings.endGroup();
+        }
+        settings.sync();
+        setFileName(fileName);
+    }
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    if (Filename.isEmpty())
+    {
+        on_actionSaveAs_triggered();
+        return;
+    }
+    else
+        saveTSP(Filename);
+}
+
+void MainWindow::on_actionSaveAs_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Save TSP","",
+             "Data (*.dat)");
+    saveTSP(fileName);
+}
+
+void MainWindow::on_actionClear_triggered()
+{
+    m_pMap->Clear();
+    setWorking(false);
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    QCoreApplication::quit();
 }

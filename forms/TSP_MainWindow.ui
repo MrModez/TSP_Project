@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>783</width>
-    <height>493</height>
+    <width>787</width>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,7 +59,7 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>100</height>
+        <height>150</height>
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -91,13 +91,13 @@
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>20</y>
-             <width>32</width>
-             <height>32</height>
+             <y>30</y>
+             <width>101</width>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
-            <string>&gt;</string>
+            <string>Старт</string>
            </property>
            <property name="checkable">
             <bool>true</bool>
@@ -106,14 +106,14 @@
           <widget class="QPushButton" name="StopGABut">
            <property name="geometry">
             <rect>
-             <x>60</x>
-             <y>20</y>
-             <width>32</width>
+             <x>20</x>
+             <y>70</y>
+             <width>101</width>
              <height>32</height>
             </rect>
            </property>
            <property name="text">
-            <string>[]</string>
+            <string>Стоп</string>
            </property>
            <property name="checkable">
             <bool>false</bool>
@@ -123,7 +123,7 @@
            <property name="geometry">
             <rect>
              <x>400</x>
-             <y>20</y>
+             <y>40</y>
              <width>61</width>
              <height>21</height>
             </rect>
@@ -139,7 +139,7 @@
            <property name="geometry">
             <rect>
              <x>400</x>
-             <y>40</y>
+             <y>70</y>
              <width>61</width>
              <height>21</height>
             </rect>
@@ -155,8 +155,8 @@
            <property name="geometry">
             <rect>
              <x>540</x>
-             <y>10</y>
-             <width>41</width>
+             <y>30</y>
+             <width>51</width>
              <height>21</height>
             </rect>
            </property>
@@ -171,8 +171,8 @@
            <property name="geometry">
             <rect>
              <x>540</x>
-             <y>30</y>
-             <width>41</width>
+             <y>60</y>
+             <width>51</width>
              <height>21</height>
             </rect>
            </property>
@@ -187,8 +187,8 @@
            <property name="geometry">
             <rect>
              <x>540</x>
-             <y>50</y>
-             <width>41</width>
+             <y>90</y>
+             <width>51</width>
              <height>21</height>
             </rect>
            </property>
@@ -203,7 +203,7 @@
            <property name="geometry">
             <rect>
              <x>300</x>
-             <y>20</y>
+             <y>40</y>
              <width>91</width>
              <height>16</height>
             </rect>
@@ -216,7 +216,7 @@
            <property name="geometry">
             <rect>
              <x>300</x>
-             <y>40</y>
+             <y>70</y>
              <width>91</width>
              <height>16</height>
             </rect>
@@ -229,7 +229,7 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>10</y>
+             <y>30</y>
              <width>61</width>
              <height>16</height>
             </rect>
@@ -242,7 +242,7 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>30</y>
+             <y>60</y>
              <width>61</width>
              <height>16</height>
             </rect>
@@ -255,7 +255,7 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>50</y>
+             <y>90</y>
              <width>61</width>
              <height>16</height>
             </rect>
@@ -302,6 +302,31 @@
            </property>
           </widget>
          </widget>
+         <widget class="QWidget" name="tabWM">
+          <attribute name="title">
+           <string>Матрица весов</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTableView" name="tableView"/>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -314,7 +339,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>783</width>
+     <width>787</width>
      <height>20</height>
     </rect>
    </property>

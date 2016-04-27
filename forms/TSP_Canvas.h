@@ -20,6 +20,7 @@ public:
     void setBackgroundColor(QColor val);
     void setMap(TSP_Map *map);
     void ShowBest(bool state);
+    void setEnabled(bool state);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -34,6 +35,7 @@ private:
     TSP_Map* m_pMap;
     int      m_ID;
     bool     m_bDrawBest;
+    bool     m_bEnabled;
 };
 
 #endif // TSP_CANVAS_H

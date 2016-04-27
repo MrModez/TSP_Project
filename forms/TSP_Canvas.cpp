@@ -15,6 +15,7 @@ TSP_Canvas::TSP_Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
     setMap(map);
     m_ID = -1;
     m_bDrawBest = false;
+    m_bEnabled = true;
     QObject::connect(m_pMap, SIGNAL(Update()),
                      this, SLOT(repaint()));
 }
@@ -141,6 +142,9 @@ bool TSP_Canvas::event(QEvent *event)
     }
     if (event->type() == QEvent::MouseButtonPress)
     {
+        if (!m_bEnabled)
+            return true;
+
         QMouseEvent *pMouseEvent = reinterpret_cast<QMouseEvent *>(event);
         int x = pMouseEvent->x();
         int y = pMouseEvent->y();
@@ -167,6 +171,9 @@ bool TSP_Canvas::event(QEvent *event)
     }
     if (event->type() == QEvent::MouseMove)
     {
+        if (!m_bEnabled)
+            return true;
+
         QMouseEvent *pMouseEvent = reinterpret_cast<QMouseEvent *>(event);
         int x = pMouseEvent->x();
         int y = pMouseEvent->y();
@@ -177,8 +184,17 @@ bool TSP_Canvas::event(QEvent *event)
     }
     if (event->type() == QEvent::MouseButtonRelease)
     {
+        if (!m_bEnabled)
+            return true;
+
         m_ID = -1;
     }
     repaint();
     return true;
+}
+
+void TSP_Canvas::setEnabled(bool state)
+{
+    m_bEnabled = state;
+    this->setCursor(state ? Qt::ArrowCursor : Qt::WaitCursor);
 }
