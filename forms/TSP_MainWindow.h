@@ -36,6 +36,8 @@ private slots:
     void on_actionSaveAs_triggered();
     void on_actionClear_triggered();
     void on_actionExit_triggered();
+    void on_UpdateBut_clicked();
+    void MatrixUpdated();
 
 private:
     Ui::MainWindow      *ui;

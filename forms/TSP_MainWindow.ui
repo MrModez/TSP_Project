@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>787</width>
-    <height>577</height>
+    <width>808</width>
+    <height>701</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,7 +59,7 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>150</height>
+        <height>200</height>
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -90,10 +90,10 @@
           <widget class="QPushButton" name="StartGABut">
            <property name="geometry">
             <rect>
-             <x>20</x>
-             <y>30</y>
-             <width>101</width>
-             <height>31</height>
+             <x>30</x>
+             <y>50</y>
+             <width>121</width>
+             <height>41</height>
             </rect>
            </property>
            <property name="text">
@@ -106,10 +106,10 @@
           <widget class="QPushButton" name="StopGABut">
            <property name="geometry">
             <rect>
-             <x>20</x>
-             <y>70</y>
-             <width>101</width>
-             <height>32</height>
+             <x>30</x>
+             <y>100</y>
+             <width>121</width>
+             <height>41</height>
             </rect>
            </property>
            <property name="text">
@@ -123,9 +123,9 @@
            <property name="geometry">
             <rect>
              <x>400</x>
-             <y>40</y>
+             <y>60</y>
              <width>61</width>
-             <height>21</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="maximum">
@@ -139,9 +139,9 @@
            <property name="geometry">
             <rect>
              <x>400</x>
-             <y>70</y>
+             <y>100</y>
              <width>61</width>
-             <height>21</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="maximum">
@@ -154,10 +154,10 @@
           <widget class="QSpinBox" name="spinBox_3">
            <property name="geometry">
             <rect>
-             <x>540</x>
-             <y>30</y>
+             <x>560</x>
+             <y>40</y>
              <width>51</width>
-             <height>21</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="maximum">
@@ -170,10 +170,10 @@
           <widget class="QSpinBox" name="spinBox_4">
            <property name="geometry">
             <rect>
-             <x>540</x>
-             <y>60</y>
+             <x>560</x>
+             <y>80</y>
              <width>51</width>
-             <height>21</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="maximum">
@@ -186,10 +186,10 @@
           <widget class="QSpinBox" name="spinBox_5">
            <property name="geometry">
             <rect>
-             <x>540</x>
-             <y>90</y>
+             <x>560</x>
+             <y>120</y>
              <width>51</width>
-             <height>21</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="maximum">
@@ -203,9 +203,9 @@
            <property name="geometry">
             <rect>
              <x>300</x>
-             <y>40</y>
+             <y>60</y>
              <width>91</width>
-             <height>16</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
@@ -216,9 +216,9 @@
            <property name="geometry">
             <rect>
              <x>300</x>
-             <y>70</y>
+             <y>100</y>
              <width>91</width>
-             <height>16</height>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
@@ -229,9 +229,9 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>30</y>
-             <width>61</width>
-             <height>16</height>
+             <y>40</y>
+             <width>71</width>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
@@ -242,9 +242,9 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>60</y>
-             <width>61</width>
-             <height>16</height>
+             <y>80</y>
+             <width>71</width>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
@@ -255,13 +255,39 @@
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>90</y>
-             <width>61</width>
-             <height>16</height>
+             <y>120</y>
+             <width>71</width>
+             <height>31</height>
             </rect>
            </property>
            <property name="text">
             <string>Мутация 3</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_6">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>20</y>
+             <width>111</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Работа Алгоритма</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_7">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>20</y>
+             <width>121</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Параметры Алгоритма</string>
            </property>
           </widget>
          </widget>
@@ -273,32 +299,45 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>30</y>
-             <width>80</width>
-             <height>21</height>
+             <y>50</y>
+             <width>121</width>
+             <height>41</height>
             </rect>
            </property>
            <property name="text">
-            <string>Start</string>
+            <string>Старт</string>
            </property>
            <property name="checkable">
             <bool>true</bool>
            </property>
           </widget>
-          <widget class="QPushButton" name="ShowBestBut">
+          <widget class="QPushButton" name="StopBBBut">
            <property name="geometry">
             <rect>
-             <x>160</x>
-             <y>20</y>
-             <width>80</width>
-             <height>21</height>
+             <x>30</x>
+             <y>100</y>
+             <width>121</width>
+             <height>41</height>
             </rect>
            </property>
            <property name="text">
-            <string>Start</string>
+            <string>Стоп</string>
            </property>
            <property name="checkable">
-            <bool>true</bool>
+            <bool>false</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_8">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>20</y>
+             <width>111</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Работа Алгоритма</string>
            </property>
           </widget>
          </widget>
@@ -323,7 +362,18 @@
             <number>0</number>
            </property>
            <item row="0" column="0">
-            <widget class="QTableView" name="tableView"/>
+            <widget class="QTextEdit" name="textEdit">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="UpdateBut">
+             <property name="text">
+              <string>Обновить матрицу</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -339,7 +389,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>787</width>
+     <width>808</width>
      <height>20</height>
     </rect>
    </property>
@@ -488,10 +538,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>ShowBestBut</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>actionShowBestResult</receiver>
-   <slot>toggle()</slot>
+   <sender>StopBBBut</sender>
+   <signal>pressed()</signal>
+   <receiver>actionStopBB</receiver>
+   <slot>trigger()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>289</x>
@@ -512,6 +562,22 @@
     <hint type="sourcelabel">
      <x>77</x>
      <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>StartBBBut</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionStartBB</receiver>
+   <slot>toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>

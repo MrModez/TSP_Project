@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(m_pCanvas, &TSP_Canvas::addCity, m_pMap, &TSP_Map::addCity);
     connect(m_pCanvas, &TSP_Canvas::moveCity, m_pMap, &TSP_Map::moveCity);
     connect(m_pCanvas, &TSP_Canvas::removeCity, m_pMap, &TSP_Map::removeCity);
+    //connect(m_pMap, &TSP_Map::MatrixUpdated, this, &MainWindow::MatrixUpdated);
 
     setFileName("");
     ui->verticalLayout->addWidget(m_pCanvas);
@@ -63,23 +64,28 @@ void MainWindow::on_actionStartBB_toggled(bool arg1)
 {
     if (arg1)
     {
-        std::vector<float>arg;
-        m_pSolvers->Solve(Solver_BB, arg);
-        ui->actionStartBB->setText("StopBB");
+        if (m_pSolvers->IsWorking(Solver_BB))
+            m_pSolvers->Continue(Solver_BB);
+        else
+        {
+            std::vector<float>arg;
+            m_pSolvers->Solve(Solver_BB, arg);
+        }
+        ui->StartBBBut->setText("Пауза");
     }
     else
     {
-        m_pSolvers->Stop(Solver_BB);
-        ui->actionStartBB->setText("StartBB");
+        m_pSolvers->Pause(Solver_BB);
+        ui->StartBBBut->setText("Старт");
     }
-
+    setWorking(arg1);
 }
 
 void MainWindow::on_actionStopBB_triggered()
 {
     m_pSolvers->Continue(Solver_BB);
     m_pSolvers->Stop(Solver_BB);
-    ui->StartBBBut->setText(">");
+    ui->StartBBBut->setChecked(false);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -225,4 +231,37 @@ void MainWindow::on_actionClear_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     QCoreApplication::quit();
+}
+
+void MainWindow::MatrixUpdated()
+{
+    auto matrix = m_pMap->GetMatrix();
+    QString str = "<table border=\"1\" cellpadding=\"2\" cellspacing=\"2\">";
+    str += "<tr>";
+    str += "<th>/</th>";
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        str += "<th>" + QString::number(i) + "</th>";
+    }
+    str += "</tr>";
+    int a = 0;
+    for (auto &vec : matrix)
+    {
+        str += "<tr>";
+        str += "<th>" + QString::number(a++) + "</th>";
+        for (auto &num : vec)
+        {
+            float fnum = floor(num * 5 + 0.5) / 5;
+            str += "<td>" + QString::number(fnum) + "</td>";
+        }
+        str += "</tr>";
+    }
+    str += "</table>";
+    ui->textEdit->setHtml(str);
+}
+
+
+void MainWindow::on_UpdateBut_clicked()
+{
+    MatrixUpdated();
 }

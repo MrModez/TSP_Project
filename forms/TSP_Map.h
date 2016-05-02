@@ -58,7 +58,8 @@ public slots:
     void UpdateInfo(vectorint way, float fit, int id);
 
 signals:
-    void Update();
+    void WayUpdated();
+    void MatrixUpdated();
 
 protected:
     int m_iIteration;

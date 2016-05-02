@@ -47,6 +47,7 @@ void TSP_Map::Del(int a)
         }
     }
     MatrixResize((int)m_Array.size());
+    emit MatrixUpdated();
 }
 
 void TSP_Map::MatrixResize(int size)
@@ -97,6 +98,7 @@ void TSP_Map::Recount(int a)
             m_fMatrix[a][i] = len;
         }
     }
+    emit MatrixUpdated();
 }
 
 //
@@ -171,7 +173,7 @@ void TSP_Map::SetWay(vectorint way)
 {
     //qDebug( "TSP_Map::SetWay" );
     m_iWay = way;
-    emit Update();
+    emit WayUpdated();
 }
 
 void TSP_Map::UpdateInfo(vectorint way, float fit, int id)

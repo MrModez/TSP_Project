@@ -16,8 +16,8 @@ TSP_Canvas::TSP_Canvas(QWidget *parent, TSP_Map *map) : QWidget(parent)
     m_ID = -1;
     m_bDrawBest = false;
     m_bEnabled = true;
-    QObject::connect(m_pMap, SIGNAL(Update()),
-                     this, SLOT(repaint()));
+    void (QWidget:: *signal)(void) = &QWidget::repaint;
+    connect(m_pMap, &TSP_Map::WayUpdated, this, signal);
 }
 
 TSP_Canvas::~TSP_Canvas()
