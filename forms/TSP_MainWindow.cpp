@@ -2,6 +2,7 @@
 #include <QtCore>
 #include <QFileDialog>
 #include "TSP_SolverWindow.h"
+#include "TSP_ExpertWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,11 +10,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     setFileName("");
+    m_pWindow = nullptr;
+    m_Mode = TSP_NONE;
+    setMode(TSP_SOLVER);
 
-    m_pWindow = new TSP_SolverWindow(this);
-    connect(m_pWindow, &TSP_BaseWindow::newFileName, this, &MainWindow::setFileName);
-
-    this->setCentralWidget(m_pWindow);
+    QActionGroup* group = new QActionGroup(this);
+    ui->actionSolver->setActionGroup(group);
+    ui->actionExpert->setActionGroup(group);
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +36,32 @@ void MainWindow::setFileName(QString name)
         this->setWindowTitle("TSP_Project");
     }
     Filename = name;
+}
+
+void MainWindow::setMode(TSP_Mode mode)
+{
+    if (m_Mode == mode)
+        return;
+    if (m_pWindow != nullptr)
+    {
+        disconnect(m_pWindow, 0, 0, 0);
+        m_pWindow->deleteLater();
+        m_pWindow = nullptr;
+    }
+    if (mode == TSP_SOLVER)
+    {
+        m_pWindow = new TSP_SolverWindow(this);
+        ui->actionClear->setEnabled(true);
+    }
+    else if (mode == TSP_EXPERT)
+    {
+        m_pWindow = new TSP_ExpertWindow(this);
+        ui->actionClear->setEnabled(false);
+    }
+    connect(m_pWindow, &TSP_BaseWindow::newFileName, this, &MainWindow::setFileName);
+    setCentralWidget(m_pWindow);
+    m_Mode = mode;
+    on_actionNew_triggered();
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -65,4 +94,14 @@ void MainWindow::on_actionSaveAs_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     QCoreApplication::quit();
+}
+
+void MainWindow::on_actionSolver_triggered()
+{
+    setMode(TSP_SOLVER);
+}
+
+void MainWindow::on_actionExpert_triggered()
+{
+    setMode(TSP_EXPERT);
 }

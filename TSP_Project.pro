@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     solver/TSP_SolverGA.cpp \
     solver/TSP_SolverBB.cpp \
     forms/TSP_SolverWindow.cpp \
-    forms/TSP_BaseWindow.cpp
+    forms/TSP_BaseWindow.cpp \
+    forms/TSP_ExpertWindow.cpp
 
 HEADERS  += \
     algorithm/TSP_Algorithm.h \
@@ -48,8 +49,10 @@ HEADERS  += \
     solver/TSP_SolverGA.h \
     solver/TSP_SolverBB.h \
     forms/TSP_SolverWindow.h \
-    forms/TSP_BaseWindow.h
+    forms/TSP_BaseWindow.h \
+    forms/TSP_ExpertWindow.h
 
 FORMS    += \
     forms/TSP_MainWindow.ui \
-    forms/TSP_SolverWindow.ui
+    forms/TSP_SolverWindow.ui \
+    forms/TSP_ExpertWindow.ui

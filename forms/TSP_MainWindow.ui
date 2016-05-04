@@ -64,8 +64,16 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Окно</string>
+    </property>
+    <addaction name="actionSolver"/>
+    <addaction name="actionExpert"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -102,6 +110,25 @@
   <action name="actionClear">
    <property name="text">
     <string>Очистить граф</string>
+   </property>
+  </action>
+  <action name="actionSolver">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Одиночный режим</string>
+   </property>
+  </action>
+  <action name="actionExpert">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Экспертный режим</string>
    </property>
   </action>
  </widget>
