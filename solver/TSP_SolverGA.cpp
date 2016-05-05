@@ -15,9 +15,10 @@ TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solve
 {
 }
 
-void TSP_SolverGA::SetSettings(std::vector<float>args)
+void TSP_SolverGA::SetSettings(QVector<float>args, float result /* = -1.0f*/)
 {
-    GA->SetSettings(args);
+    GA->SetSettings(args.toStdVector());
+    m_fResult = result;
 }
 
 void TSP_SolverGA::Execute()
@@ -25,9 +26,13 @@ void TSP_SolverGA::Execute()
     GA->Reset();
     GA->SetArray(m_pMap->GetArray());
     GA->InitPopulation();
-    qDebug("GA RUN");
+    //qDebug("GA RUN");
+
+    int wait = 10;
+    int left = wait;
 
     int index = 0;
+    float best_fit = INT_MAX;
     while (!m_bStop)
     {
         if (m_bPaused && !m_bStop)
@@ -36,28 +41,40 @@ void TSP_SolverGA::Execute()
             continue;
         }
 
-        qDebug("GA %i:", index++);
         GA->NextIteration();
         GA->CalcFitness();
         GA->SortByFitness();
+        index++;
+        left--;
 
-        vectorint best = GA->GetBestWay();
         float fit = GA->GetBestFitness();
-        QString str = "";
-        for (auto &i : best)
+        if (fit < best_fit)
         {
-            str += QString::number(i) + " ";
+            best_fit = fit;
+            left = wait;
+            vectorint best = GA->GetBestWay();
+            /*
+            qDebug("GA %i:", index);
+            QString str = "";
+            for (auto &i : best)
+            {
+                str += QString::number(i) + " ";
+            }
+            QByteArray bstr = str.toLatin1();
+            qDebug("WAY %s", bstr.data());
+            qDebug("FIT %f\n", fit);
+            */
+            emit updateInfo(best, fit, index);
         }
-        QByteArray bstr = str.toLatin1();
-        qDebug("WAY %s", bstr.data());
-        qDebug("FIT %f\n", fit);
-        emit updateInfo(best, fit, index);
-
+        if ((m_fResult > 0.0 && fit == m_fResult) || left == 0)
+        {
+            m_bStop = true;
+        }
         GA->Mate();
         GA->Swap();
     }
     m_bStop = true;
-    emit finished(this);
+    emit finished();
 }
 
 void TSP_SolverGA::Update()

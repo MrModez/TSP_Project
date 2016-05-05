@@ -223,6 +223,16 @@ int TSP_Map::ClearBest()
     m_iBestWay.clear();
 }
 
+void TSP_Map::GenerateRandom(int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        int rand_x = qrand() % 750 + 50;
+        int rand_y = qrand() % 400 + 20;
+        addCity(rand_x, rand_y);
+    }
+}
+
 //Signals/Slots stuff
 void TSP_Map::addCity(float newX, float newY)
 {

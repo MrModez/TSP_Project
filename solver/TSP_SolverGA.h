@@ -18,13 +18,13 @@ class TSP_SolverGA : public TSP_Solver
 public:
     TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap);
     virtual void Execute();
-    void SetSettings(std::vector<float> args);
+    void SetSettings(QVector<float> args, float result = -1.0f);
 
 public slots:
     virtual void Update();
 
 private:
-    QTimer *timer;
+    float m_fResult;
 };
 
 #endif // TSP_SOLVERGA_H

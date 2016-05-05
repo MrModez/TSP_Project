@@ -51,6 +51,7 @@ void TSP_SolverWindow::on_actionNew_triggered()
 {
     m_pMap->Clear();
     setWorking(false);
+    m_pMap->GenerateRandom(51);
 }
 
 void TSP_SolverWindow::on_actionOpen_triggered()
@@ -139,7 +140,7 @@ void TSP_SolverWindow::on_actionStartGA_toggled(bool arg1)
         }
         else
         {
-            std::vector<float>arg{(float)ui->spinBox->value(), (float)ui->spinBox_2->value()/100.0f,
+            QVector<float>arg{(float)ui->spinBox->value(), (float)ui->spinBox_2->value()/100.0f,
                         (float)ui->spinBox_3->value()/100.0f, (float)ui->spinBox_4->value()/100.0f, (float)ui->spinBox_5->value()/100.0f};
             m_pSolvers->Solve(Solver_GA, arg);
             ui->StartGABut->setText("Пауза");
@@ -177,7 +178,7 @@ void TSP_SolverWindow::on_actionStartBB_toggled(bool arg1)
         }
         else
         {
-            std::vector<float>arg;
+            QVector<float>arg;
             m_pSolvers->Solve(Solver_BB, arg);
             ui->StartBBBut->setText("Пауза");
         }

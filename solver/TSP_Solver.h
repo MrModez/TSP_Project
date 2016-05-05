@@ -31,7 +31,7 @@ public slots:
 
 signals:
     void updateInfo(vectorint vec, float fit, int id);
-    void finished(TSP_Solver *solver);
+    void finished();
 
 protected:
     TSP_Algorithm *m_pAlgorithm;

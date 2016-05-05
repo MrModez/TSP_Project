@@ -22,9 +22,6 @@ public:
 
 public slots:
     virtual void Update();
-
-private:
-    QTimer *timer;
 };
 
 #endif // TSP_SolverBB_H

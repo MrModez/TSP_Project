@@ -6,6 +6,7 @@
 
 TSP_SolverCollection::TSP_SolverCollection(TSP_Map *pMap)
 {
+    qRegisterMetaType<vectorint>("vectorint");
     m_pMap = pMap;
     for (int i = 0; i < Solver_Count; i++)
     {
@@ -32,7 +33,7 @@ TSP_Solver *TSP_SolverCollection::Fabricate(int ID)
     return NULL;
 }
 
-void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
+void TSP_SolverCollection::Solve(int ID, QVector<float> arg)
 {
     qDebug("Solving %i", ID);
 
@@ -41,7 +42,6 @@ void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
     m_pSolvers[ID]->moveToThread(pSovlerThread);
     m_Status[ID] = true;
 
-    qRegisterMetaType<vectorint>("vectorint");
     connect(m_pSolvers[ID], &TSP_Solver::updateInfo,  m_pMap, &TSP_Map::UpdateInfo);
     connect(pSovlerThread, &QThread::started, m_pSolvers[ID], &TSP_Solver::StartAlgorithm);
     connect(m_pSolvers[ID], &TSP_Solver::finished, this, &TSP_SolverCollection::Finished);
@@ -58,8 +58,9 @@ void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
     pSovlerThread->start();
 }
 
-void TSP_SolverCollection::Finished(TSP_Solver *Solver)
+void TSP_SolverCollection::Finished()
 {
+    TSP_Solver *Solver = qobject_cast<TSP_Solver*>(sender());
     int ID = m_pSolvers.indexOf(Solver);
     m_Status[ID] = false;
     emit onFinish(ID);

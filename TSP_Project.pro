@@ -13,6 +13,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = TSP_Project
 TEMPLATE = app
 INCLUDEPATH += algorithm \
+               expert   \
                forms    \
                shared   \
                solver
@@ -34,7 +35,8 @@ SOURCES += main.cpp\
     solver/TSP_SolverBB.cpp \
     forms/TSP_SolverWindow.cpp \
     forms/TSP_BaseWindow.cpp \
-    forms/TSP_ExpertWindow.cpp
+    forms/TSP_ExpertWindow.cpp \
+    expert/TSP_ExpertManager.cpp
 
 HEADERS  += \
     algorithm/TSP_Algorithm.h \
@@ -50,7 +52,8 @@ HEADERS  += \
     solver/TSP_SolverBB.h \
     forms/TSP_SolverWindow.h \
     forms/TSP_BaseWindow.h \
-    forms/TSP_ExpertWindow.h
+    forms/TSP_ExpertWindow.h \
+    expert/TSP_ExpertManager.h
 
 FORMS    += \
     forms/TSP_MainWindow.ui \

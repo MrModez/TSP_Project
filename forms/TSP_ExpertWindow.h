@@ -4,6 +4,8 @@
 #include <TSP_BaseWindow.h>
 #include <QWidget>
 
+class TSP_ExpertManager;
+
 namespace Ui {
 class TSP_ExpertWindow;
 }
@@ -16,8 +18,12 @@ public:
     explicit TSP_ExpertWindow(QWidget *parent = 0);
     ~TSP_ExpertWindow();
 
+private slots:
+    void on_StartBut_clicked();
+
 private:
     Ui::TSP_ExpertWindow *ui;
+    TSP_ExpertManager   *m_pExpert;
 };
 
 #endif // TSP_EXPERTWINDOW_H

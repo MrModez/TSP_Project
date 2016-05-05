@@ -26,12 +26,12 @@ public:
     ~TSP_SolverCollection();
 
     TSP_Solver *Fabricate(int ID);
-    void Solve(int ID, std::vector<float> arg);
+    void Solve(int ID, QVector<float> arg);
     void Stop(int ID);
     void Pause(int ID);
     void Continue(int ID);
     bool IsWorking(int ID);
-    void Finished(TSP_Solver *Solver);
+    void Finished();
 
 signals:
     void onFinish(int ID);

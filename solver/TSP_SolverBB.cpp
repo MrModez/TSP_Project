@@ -42,7 +42,7 @@ void TSP_SolverBB::Execute()
         StopAlgorithm();
     }
     m_bStop = true;
-    emit finished(this);
+    emit finished();
 }
 
 void TSP_SolverBB::Update()

@@ -128,7 +128,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Экспертный режим</string>
+    <string>Экспериментный режим</string>
    </property>
   </action>
  </widget>

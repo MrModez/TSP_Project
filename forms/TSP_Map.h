@@ -9,8 +9,6 @@
 #include "TSP_Shared.h"
 #include <QObject>
 
-class TCANVAS;
-
 class TSP_Map : public QObject
 {
    Q_OBJECT
@@ -49,6 +47,8 @@ public:
 
     void Clear();
     int ClearBest();
+
+    void GenerateRandom(int size);
 
 public slots:
     void addCity(float newX, float newY);
