@@ -22,6 +22,7 @@ public:
 
     void saveTSP(QString filename);
     void setWorking(bool flag);
+    void onFinish(int ID);
 
 public slots:
     void on_actionNew_triggered();

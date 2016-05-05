@@ -13,9 +13,6 @@
 
 TSP_SolverBB::TSP_SolverBB(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solver(pAlgorithm, pMap)
 {
-    //timer = new QTimer(this);
-    //connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-    //timer->start(1000);
 }
 
 void TSP_SolverBB::Execute()
@@ -45,7 +42,7 @@ void TSP_SolverBB::Execute()
         StopAlgorithm();
     }
     m_bStop = true;
-    emit finished();
+    emit finished(this);
 }
 
 void TSP_SolverBB::Update()

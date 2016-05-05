@@ -23,9 +23,6 @@ public:
 public slots:
     virtual void Update();
 
-signals:
-    void finished();
-
 private:
     QTimer *timer;
 };

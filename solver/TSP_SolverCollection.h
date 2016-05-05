@@ -3,6 +3,7 @@
 
 #include "TSP_Shared.h"
 #include <QObject>
+#include <QVector>
 #include <QPointer>
 
 class TSP_Solver;
@@ -30,9 +31,14 @@ public:
     void Pause(int ID);
     void Continue(int ID);
     bool IsWorking(int ID);
+    void Finished(TSP_Solver *Solver);
+
+signals:
+    void onFinish(int ID);
 
 private:
-    std::vector<TSP_Solver*>    m_pSolvers;
+    QVector<TSP_Solver*>    m_pSolvers;
+    QVector<bool>            m_Status;
     TSP_Map                    *m_pMap;
 };
 

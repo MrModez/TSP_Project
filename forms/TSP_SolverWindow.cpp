@@ -18,6 +18,7 @@ TSP_SolverWindow::TSP_SolverWindow(QWidget *parent) :
     connect(m_pCanvas, &TSP_Canvas::addCity, m_pMap, &TSP_Map::addCity);
     connect(m_pCanvas, &TSP_Canvas::moveCity, m_pMap, &TSP_Map::moveCity);
     connect(m_pCanvas, &TSP_Canvas::removeCity, m_pMap, &TSP_Map::removeCity);
+    connect(m_pSolvers, &TSP_SolverCollection::onFinish, this, &TSP_SolverWindow::onFinish);
     //connect(m_pMap, &TSP_Map::MatrixUpdated, this, &TSP_SolverWindow::MatrixUpdated);
 
     ui->verticalLayout->addWidget(m_pCanvas);
@@ -30,6 +31,21 @@ TSP_SolverWindow::~TSP_SolverWindow()
     delete m_pCanvas;
 }
 
+
+void TSP_SolverWindow::onFinish(int ID)
+{
+    qDebug() << "FINISH LOL " << ID;
+    if (ID == Solver_GA)
+    {
+        ui->StartGABut->setChecked(false);
+        on_actionStartGA_toggled(false);
+    }
+    else if (ID == Solver_BB)
+    {
+        ui->StartBBBut->setChecked(false);
+        on_actionStartBB_toggled(false);
+    }
+}
 
 void TSP_SolverWindow::on_actionNew_triggered()
 {
@@ -117,28 +133,36 @@ void TSP_SolverWindow::on_actionStartGA_toggled(bool arg1)
     if (arg1)
     {
         if (m_pSolvers->IsWorking(Solver_GA))
+        {
             m_pSolvers->Continue(Solver_GA);
+            ui->StartGABut->setText("Пауза");
+        }
         else
         {
             std::vector<float>arg{(float)ui->spinBox->value(), (float)ui->spinBox_2->value()/100.0f,
                         (float)ui->spinBox_3->value()/100.0f, (float)ui->spinBox_4->value()/100.0f, (float)ui->spinBox_5->value()/100.0f};
             m_pSolvers->Solve(Solver_GA, arg);
+            ui->StartGABut->setText("Пауза");
         }
-        ui->StartGABut->setText("Пауза");
     }
     else
     {
-        m_pSolvers->Pause(Solver_GA);
-        ui->StartGABut->setText("Старт");
+        if (m_pSolvers->IsWorking(Solver_GA))
+        {
+            m_pSolvers->Pause(Solver_GA);
+            ui->StartGABut->setText("Приостановленно");
+        }
+        else
+        {
+            ui->StartGABut->setText("Старт");
+        }
     }
-    setWorking(arg1);
+    setWorking(m_pSolvers->IsWorking(Solver_GA));
 }
 
 void TSP_SolverWindow::on_actionStopGA_triggered()
 {
-    m_pSolvers->Continue(Solver_GA);
     m_pSolvers->Stop(Solver_GA);
-    ui->StartGABut->setChecked(false);
 }
 
 
@@ -147,27 +171,35 @@ void TSP_SolverWindow::on_actionStartBB_toggled(bool arg1)
     if (arg1)
     {
         if (m_pSolvers->IsWorking(Solver_BB))
+        {
             m_pSolvers->Continue(Solver_BB);
+            ui->StartBBBut->setText("Пауза");
+        }
         else
         {
             std::vector<float>arg;
             m_pSolvers->Solve(Solver_BB, arg);
+            ui->StartBBBut->setText("Пауза");
         }
-        ui->StartBBBut->setText("Пауза");
     }
     else
     {
-        m_pSolvers->Pause(Solver_BB);
-        ui->StartBBBut->setText("Старт");
+        if (m_pSolvers->IsWorking(Solver_BB))
+        {
+            m_pSolvers->Pause(Solver_BB);
+            ui->StartBBBut->setText("Приостановленно");
+        }
+        else
+        {
+            ui->StartBBBut->setText("Старт");
+        }
     }
-    setWorking(arg1);
+    setWorking(m_pSolvers->IsWorking(Solver_BB));
 }
 
 void TSP_SolverWindow::on_actionStopBB_triggered()
 {
-    m_pSolvers->Continue(Solver_BB);
     m_pSolvers->Stop(Solver_BB);
-    ui->StartBBBut->setChecked(false);
 }
 
 

@@ -13,9 +13,6 @@
 
 TSP_SolverGA::TSP_SolverGA(TSP_Algorithm *pAlgorithm, TSP_Map *pMap) : TSP_Solver(pAlgorithm, pMap)
 {
-    //timer = new QTimer(this);
-    //connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-    //timer->start(1000);
 }
 
 void TSP_SolverGA::SetSettings(std::vector<float>args)
@@ -33,8 +30,11 @@ void TSP_SolverGA::Execute()
     int index = 0;
     while (!m_bStop)
     {
-        if (m_bPaused)
+        if (m_bPaused && !m_bStop)
+        {
+            qDebug() << "GA Paused";
             continue;
+        }
 
         qDebug("GA %i:", index++);
         GA->NextIteration();
@@ -57,7 +57,7 @@ void TSP_SolverGA::Execute()
         GA->Swap();
     }
     m_bStop = true;
-    emit finished();
+    emit finished(this);
 }
 
 void TSP_SolverGA::Update()

@@ -11,6 +11,7 @@ TSP_SolverCollection::TSP_SolverCollection(TSP_Map *pMap)
     {
         QPointer<TSP_Solver>solver;
         m_pSolvers.push_back(solver);
+        m_Status.push_back(false);
     }
 }
 
@@ -35,15 +36,17 @@ void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
 {
     qDebug("Solving %i", ID);
 
-    QThread *pSovlerThread = new QThread;
+    QThread *pSovlerThread = new QThread(this);
     m_pSolvers[ID] = Fabricate(ID);
     m_pSolvers[ID]->moveToThread(pSovlerThread);
+    m_Status[ID] = true;
 
     qRegisterMetaType<vectorint>("vectorint");
     connect(m_pSolvers[ID], &TSP_Solver::updateInfo,  m_pMap, &TSP_Map::UpdateInfo);
     connect(pSovlerThread, &QThread::started, m_pSolvers[ID], &TSP_Solver::StartAlgorithm);
+    connect(m_pSolvers[ID], &TSP_Solver::finished, this, &TSP_SolverCollection::Finished);
     connect(m_pSolvers[ID], &TSP_Solver::finished, pSovlerThread, &QThread::quit);
-    connect(m_pSolvers[ID], &TSP_Solver::finished, m_pSolvers[ID], &TSP_Solver::deleteLater);
+    //connect(m_pSolvers[ID], &TSP_Solver::finished, m_pSolvers[ID], &TSP_Solver::deleteLater);
     connect(pSovlerThread, &QThread::finished, pSovlerThread, &QThread::deleteLater);
 
     if (ID == Solver_GA)
@@ -55,10 +58,18 @@ void TSP_SolverCollection::Solve(int ID, std::vector<float>arg)
     pSovlerThread->start();
 }
 
+void TSP_SolverCollection::Finished(TSP_Solver *Solver)
+{
+    int ID = m_pSolvers.indexOf(Solver);
+    m_Status[ID] = false;
+    emit onFinish(ID);
+    Solver->deleteLater();
+}
+
 void TSP_SolverCollection::Pause(int ID)
 {
     qDebug("Pausing %i", ID);
-    if (m_pSolvers[ID])
+    if (m_Status[ID] && m_pSolvers[ID])
     {
         m_pSolvers[ID]->PauseAlgorithm();
     }
@@ -67,7 +78,7 @@ void TSP_SolverCollection::Pause(int ID)
 void TSP_SolverCollection::Continue(int ID)
 {
     qDebug("Continuing %i", ID);
-    if (m_pSolvers[ID])
+    if (m_Status[ID] && m_pSolvers[ID])
     {
         m_pSolvers[ID]->ContinueAlgorithm();
     }
@@ -77,7 +88,7 @@ void TSP_SolverCollection::Continue(int ID)
 void TSP_SolverCollection::Stop(int ID)
 {
     qDebug("Stopping %i", ID);
-    if (m_pSolvers[ID])
+    if (m_Status[ID] && m_pSolvers[ID])
     {
         m_pSolvers[ID]->StopAlgorithm();
     }
@@ -85,7 +96,7 @@ void TSP_SolverCollection::Stop(int ID)
 
 bool TSP_SolverCollection::IsWorking(int ID)
 {
-    if (m_pSolvers[ID])
+    if (m_Status[ID] && m_pSolvers[ID])
     {
         return m_pSolvers[ID]->IsWorking();
     }
