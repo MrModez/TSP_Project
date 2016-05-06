@@ -49,7 +49,7 @@ void TSP_ExpertManager::UpdateInfo(float fit, int iter)
     TSP_ExpertSolver *pExpertSolver = qobject_cast<TSP_ExpertSolver*>(sender());
     int ID = m_pExpertSolvers.indexOf(pExpertSolver);
     //qDebug() << "THREAD UPDATED" << ID;
-    emit UpdateTable(ID, m_iTries-iter, fit);
+    emit updateTable(ID, m_iTries-iter, fit);
 }
 
 void TSP_ExpertManager::Finished(float fit, int iter)
@@ -58,7 +58,8 @@ void TSP_ExpertManager::Finished(float fit, int iter)
     int ID = m_pExpertSolvers.indexOf(pExpertSolver);
     qDebug() << "THREAD FINISHED" << ID;
     pExpertSolver->deleteLater();
-    //emit UpdateTable(ID, iter, fit);
+    emit updateTable(ID, m_iTries-iter, fit);
+    emit finishedWorking();
 }
 
 

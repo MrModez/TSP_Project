@@ -9,7 +9,8 @@ TSP_ExpertWindow::TSP_ExpertWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_pExpert = new TSP_ExpertManager(this);
-    connect(m_pExpert, &TSP_ExpertManager::UpdateTable, this, &TSP_ExpertWindow::updateTable);
+    connect(m_pExpert, &TSP_ExpertManager::updateTable, this, &TSP_ExpertWindow::UpdateTable);
+    connect(m_pExpert, &TSP_ExpertManager::finishedWorking, this, &TSP_ExpertWindow::Finished);
 }
 
 TSP_ExpertWindow::~TSP_ExpertWindow()
@@ -28,16 +29,23 @@ void TSP_ExpertWindow::on_StartBut_clicked()
     for (auto &res : results)
         res.resize(iTries);
     m_pExpert->Init(args);
-    printTable();
+
+    emit onWorking(true);
+    PrintTable();
 }
 
-void TSP_ExpertWindow::updateTable(int ID, int iter, float fit)
+void TSP_ExpertWindow::UpdateTable(int ID, int iter, float fit)
 {
     results[ID][iter] = fit;
-    printTable();
+    PrintTable();
 }
 
-void TSP_ExpertWindow::printTable()
+void TSP_ExpertWindow::Finished()
+{
+    emit onWorking(false);
+}
+
+void TSP_ExpertWindow::PrintTable()
 {
     QString str = "<table border=\"1\" cellpadding=\"2\" cellspacing=\"2\">";
     str += "<tr>";

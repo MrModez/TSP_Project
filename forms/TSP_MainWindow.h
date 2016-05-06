@@ -26,6 +26,7 @@ public:
     ~MainWindow();
     void setFileName(QString name);
     void setMode(TSP_Mode mode);
+    void onWorking(bool flag);
 
 private slots:
     void on_actionOpen_triggered();

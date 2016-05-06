@@ -18,11 +18,13 @@ class TSP_ExpertWindow : public TSP_BaseWindow
 public:
     explicit TSP_ExpertWindow(QWidget *parent = 0);
     ~TSP_ExpertWindow();
-    void printTable();
+    void PrintTable();
+    void Finished();
 
 private slots:
     void on_StartBut_clicked();
-    void updateTable(int ID, int iter, float fit);
+    void UpdateTable(int ID, int iter, float fit);
+
 private:
     Ui::TSP_ExpertWindow *ui;
     TSP_ExpertManager   *m_pExpert;

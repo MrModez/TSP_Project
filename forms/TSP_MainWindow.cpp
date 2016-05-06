@@ -61,9 +61,15 @@ void MainWindow::setMode(TSP_Mode mode)
         ui->actionGenerate->setEnabled(false);
     }
     connect(m_pWindow, &TSP_BaseWindow::newFileName, this, &MainWindow::setFileName);
+    connect(m_pWindow, &TSP_BaseWindow::onWorking, this, &MainWindow::onWorking);
     setCentralWidget(m_pWindow);
     m_Mode = mode;
     on_actionNew_triggered();
+}
+
+void MainWindow::onWorking(bool flag)
+{
+    menuBar()->setEnabled(!flag);
 }
 
 void MainWindow::on_actionNew_triggered()

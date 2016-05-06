@@ -212,7 +212,7 @@ void TSP_SolverWindow::on_actionShowBestResult_toggled(bool arg1)
 void TSP_SolverWindow::setWorking(bool flag)
 {
     working = flag;
-    //menuBar()->setEnabled(!flag);
+    emit onWorking(flag);
     m_pCanvas->setEnabled(!flag);
 }
 

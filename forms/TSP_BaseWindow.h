@@ -9,6 +9,9 @@ class TSP_BaseWindow : public QWidget
 public:
     explicit TSP_BaseWindow(QWidget *parent = 0);
 
+signals:
+    void onWorking(bool);
+
 public slots:
     virtual void on_actionNew_triggered(){}
     virtual void on_actionOpen_triggered(){}
