@@ -27,6 +27,16 @@ public:
     float y;
 };
 
+struct TSP_Result
+{
+    //TSP_Result() : vec(_vec), fit(_fit), id(_id) {}
+    TSP_Result() {}
+    TSP_Result( std::vector<int> _vec, float _fit, int _id) : vec(_vec), fit(_fit), id(_id) {}
+    std::vector<int> vec;
+    float fit;
+    int id;
+};
+
 double sqr(double a);
 
 typedef TPoint              City;

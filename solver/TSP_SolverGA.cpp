@@ -33,6 +33,8 @@ void TSP_SolverGA::Execute()
 
     int index = 0;
     float best_fit = INT_MAX;
+    vectorint best;
+    float fit;
     while (!m_bStop)
     {
         if (m_bPaused && !m_bStop)
@@ -47,12 +49,12 @@ void TSP_SolverGA::Execute()
         index++;
         left--;
 
-        float fit = GA->GetBestFitness();
+        fit = GA->GetBestFitness();
         if (fit < best_fit)
         {
             best_fit = fit;
             left = wait;
-            vectorint best = GA->GetBestWay();
+            best = GA->GetBestWay();
             /*
             qDebug("GA %i:", index);
             QString str = "";
@@ -64,7 +66,7 @@ void TSP_SolverGA::Execute()
             qDebug("WAY %s", bstr.data());
             qDebug("FIT %f\n", fit);
             */
-            emit updateInfo(best, fit, index);
+            emit updateInfo(TSP_Result(best, fit, index));
         }
         if ((m_fResult > 0.0 && fit == m_fResult) || left == 0)
         {
@@ -74,7 +76,7 @@ void TSP_SolverGA::Execute()
         GA->Swap();
     }
     m_bStop = true;
-    emit finished();
+    emit finished(TSP_Result(best, fit, index));
 }
 
 void TSP_SolverGA::Update()

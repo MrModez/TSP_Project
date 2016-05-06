@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     forms/TSP_SolverWindow.cpp \
     forms/TSP_BaseWindow.cpp \
     forms/TSP_ExpertWindow.cpp \
-    expert/TSP_ExpertManager.cpp
+    expert/TSP_ExpertManager.cpp \
+    expert/TSP_ExpertSolver.cpp
 
 HEADERS  += \
     algorithm/TSP_Algorithm.h \
@@ -53,7 +54,8 @@ HEADERS  += \
     forms/TSP_SolverWindow.h \
     forms/TSP_BaseWindow.h \
     forms/TSP_ExpertWindow.h \
-    expert/TSP_ExpertManager.h
+    expert/TSP_ExpertManager.h \
+    expert/TSP_ExpertSolver.h
 
 FORMS    += \
     forms/TSP_MainWindow.ui \

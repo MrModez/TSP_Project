@@ -22,13 +22,15 @@ void TSP_SolverBB::Execute()
     qDebug("BB RUN");
 
     int index = 0;
+    vectorint best;
+    float fit;
     while (!m_bStop)
     {
         qDebug("BB %i:", index++);
         BB->Start();
 
-        vectorint best = BB->GetBestWay();
-        float fit = BB->GetBestFitness();
+        best = BB->GetBestWay();
+        fit = BB->GetBestFitness();
         QString str = "";
         for (auto &i : best)
         {
@@ -37,12 +39,12 @@ void TSP_SolverBB::Execute()
         QByteArray bstr = str.toLatin1();
         qDebug("WAY %s", bstr.data());
         qDebug("FIT %f\n", fit);
-        emit updateInfo(best, fit, index);
+        emit updateInfo(TSP_Result(best, fit, index));
 
         StopAlgorithm();
     }
     m_bStop = true;
-    emit finished();
+    emit finished(TSP_Result(best, fit, index));
 }
 
 void TSP_SolverBB::Update()

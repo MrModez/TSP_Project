@@ -31,7 +31,7 @@ public:
     void Pause(int ID);
     void Continue(int ID);
     bool IsWorking(int ID);
-    void Finished();
+    void Finished(TSP_Result result);
 
 signals:
     void onFinish(int ID);

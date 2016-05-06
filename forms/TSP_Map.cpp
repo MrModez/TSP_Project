@@ -176,13 +176,13 @@ void TSP_Map::SetWay(vectorint way)
     emit WayUpdated();
 }
 
-void TSP_Map::UpdateInfo(vectorint way, float fit, int id)
+void TSP_Map::UpdateInfo(TSP_Result result)
 {
-    SetFitness(fit);
-    SetIteration(id);
-    SetWay(way);
-    if (fit < GetBestFitness())
-        SetBest(way, fit);
+    SetFitness(result.fit);
+    SetIteration(result.id);
+    SetWay(result.vec);
+    if (result.fit < GetBestFitness())
+        SetBest(result.vec, result.fit);
 }
 
 void TSP_Map::SetBest(vectorint way, float fit)

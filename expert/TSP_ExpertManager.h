@@ -7,7 +7,7 @@
 #include <QThread>
 #include "TSP_Shared.h"
 
-class TSP_Solver;
+class TSP_ExpertSolver;
 class TSP_Map;
 
 class TSP_ExpertManager : public QObject
@@ -22,17 +22,14 @@ public:
 signals:
 
 public slots:
-    void UpdateInfo(vectorint vec, float fit, int id);
-    void Finished();
+    //void UpdateInfo(vectorint vec, float fit, int id);
+    void Finished(TSP_Result result);
 
 private:
     int m_iSize;
     int m_iCities;
     int m_iTries;
-    QVector<TSP_Solver*>    m_pSolvers;
-    QVector<QThread*>       m_pSolverThreads;
-    QVector<int>            m_Tries;
-    QVector<TSP_Map*>       m_pMaps;
+    QVector<TSP_ExpertSolver*>  m_pExpertSolvers;
 };
 
 #endif // TSP_EXPERTMANAGER_H

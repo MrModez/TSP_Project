@@ -55,7 +55,7 @@ public slots:
     void moveCity(int ID, float newX, float newY);
     void removeCity(int ID);
     void SetWay(vectorint way);
-    void UpdateInfo(vectorint way, float fit, int id);
+    void UpdateInfo(TSP_Result result);
 
 signals:
     void WayUpdated();

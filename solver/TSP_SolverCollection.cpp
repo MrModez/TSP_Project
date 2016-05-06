@@ -7,6 +7,8 @@
 TSP_SolverCollection::TSP_SolverCollection(TSP_Map *pMap)
 {
     qRegisterMetaType<vectorint>("vectorint");
+    qRegisterMetaType<TSP_Result>("TSP_Result");
+
     m_pMap = pMap;
     for (int i = 0; i < Solver_Count; i++)
     {
@@ -58,7 +60,7 @@ void TSP_SolverCollection::Solve(int ID, QVector<float> arg)
     pSovlerThread->start();
 }
 
-void TSP_SolverCollection::Finished()
+void TSP_SolverCollection::Finished(TSP_Result result)
 {
     TSP_Solver *Solver = qobject_cast<TSP_Solver*>(sender());
     int ID = m_pSolvers.indexOf(Solver);

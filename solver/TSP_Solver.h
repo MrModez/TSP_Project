@@ -30,8 +30,8 @@ public slots:
     virtual void Update(){}
 
 signals:
-    void updateInfo(vectorint vec, float fit, int id);
-    void finished();
+    void updateInfo(TSP_Result result);
+    void finished(TSP_Result result);
 
 protected:
     TSP_Algorithm *m_pAlgorithm;
