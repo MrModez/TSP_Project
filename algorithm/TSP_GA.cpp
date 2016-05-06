@@ -9,6 +9,12 @@
 
 TSP_GA::TSP_GA() : TSP_Algorithm()
 {
+
+}
+
+TSP_GA::~TSP_GA()
+{
+
 }
 
 void TSP_GA::Reset()

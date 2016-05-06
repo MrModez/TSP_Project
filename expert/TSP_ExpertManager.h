@@ -20,7 +20,7 @@ public:
     void InitSolver(int ID);
 
 signals:
-    UpdateTable(int ID, int iter, float fit);
+    void UpdateTable(int ID, int iter, float fit);
 
 public slots:
     void UpdateInfo(float fit, int iter);

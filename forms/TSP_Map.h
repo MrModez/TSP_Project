@@ -46,7 +46,7 @@ public:
     void SetArrayY(int i, float Y);
 
     void Clear();
-    int ClearBest();
+    void ClearBest();
 
     void GenerateRandom(int size);
 

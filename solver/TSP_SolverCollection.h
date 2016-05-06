@@ -22,7 +22,7 @@ class TSP_SolverCollection : public QObject
     Q_OBJECT
 
 public:
-    TSP_SolverCollection(TSP_Map *pMap);
+    TSP_SolverCollection(TSP_Map *pMap, QObject *parent = 0);
     ~TSP_SolverCollection();
 
     TSP_Solver *Fabricate(int ID);

@@ -13,7 +13,7 @@ TSP_SolverWindow::TSP_SolverWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_pMap = new TSP_Map();
-    m_pSolvers = new TSP_SolverCollection(m_pMap);
+    m_pSolvers = new TSP_SolverCollection(m_pMap, this);
     m_pCanvas = new TSP_Canvas(ui->centralWidget, m_pMap);
     connect(m_pCanvas, &TSP_Canvas::addCity, m_pMap, &TSP_Map::addCity);
     connect(m_pCanvas, &TSP_Canvas::moveCity, m_pMap, &TSP_Map::moveCity);
@@ -28,6 +28,7 @@ TSP_SolverWindow::~TSP_SolverWindow()
 {
     delete ui;
     delete m_pMap;
+    delete m_pSolvers;
     delete m_pCanvas;
 }
 

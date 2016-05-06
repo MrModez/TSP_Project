@@ -19,6 +19,7 @@ class TSP_GA : public TSP_Algorithm
 {
 public:
     TSP_GA();
+    ~TSP_GA();
 
     virtual void Reset();
     virtual vectorint GetBestWay();

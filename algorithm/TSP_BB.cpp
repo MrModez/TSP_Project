@@ -11,6 +11,11 @@ TSP_BB::TSP_BB() : TSP_Algorithm()
 
 }
 
+TSP_BB::~TSP_BB()
+{
+
+}
+
 void TSP_BB::SetArray(vectorCity Array)
 {
     TSP_Algorithm::SetArray(Array);

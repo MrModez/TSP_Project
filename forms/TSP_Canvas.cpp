@@ -69,6 +69,7 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     painter->setBrush(brush);
     painter->setPen(pen);
 
+    //check map not nill
     QString str = "Iteration: " + QString::number(m_pMap->GetIteration());
     painter->drawText(QPoint(20, 20), str);
     str = "Fitness: " + QString::number(m_pMap->GetFitness());

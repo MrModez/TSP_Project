@@ -217,7 +217,7 @@ void TSP_Map::Clear()
     m_iBestWay.clear();
 }
 
-int TSP_Map::ClearBest()
+void TSP_Map::ClearBest()
 {
     m_iBestFitness = INT_MAX;
     m_iBestWay.clear();

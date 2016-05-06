@@ -14,6 +14,11 @@ TSP_Algorithm::TSP_Algorithm()
     m_Way.clear();
 }
 
+TSP_Algorithm::~TSP_Algorithm()
+{
+
+}
+
 void TSP_Algorithm::NextIteration()
 {
     m_iIteration++;

@@ -4,7 +4,7 @@
 #include "TSP_SolverBB.h"
 #include "TSP_Map.h"
 
-TSP_SolverCollection::TSP_SolverCollection(TSP_Map *pMap)
+TSP_SolverCollection::TSP_SolverCollection(TSP_Map *pMap, QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<vectorint>("vectorint");
     qRegisterMetaType<TSP_Result>("TSP_Result");
