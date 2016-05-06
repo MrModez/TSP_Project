@@ -224,7 +224,7 @@ void TSP_GA::Mate()
             for (int j = pos1; j < pos2; j++)
             {
                 num[m_Population[i2].way[j]] = -1;
-            };
+            }
             for (int j = 0; j < pos1; j++)
             {
                 if (num[m_Population[i1].way[j]] != -1)
@@ -232,7 +232,7 @@ void TSP_GA::Mate()
                     omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
                     num[m_Population[i1].way[j]] = -1;
                 }
-            };
+            }
             for (int j = pos1; j < pos2; j++)
             {
                 omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
@@ -244,7 +244,7 @@ void TSP_GA::Mate()
                     omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
                     num[m_Population[i1].way[j]] = -1;
                 }
-            };
+            }
         }
         omp_Buffer[i].way.push_back(0);
 

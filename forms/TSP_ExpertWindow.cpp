@@ -19,17 +19,26 @@ TSP_ExpertWindow::~TSP_ExpertWindow()
 
 void TSP_ExpertWindow::on_StartBut_clicked()
 {
-    QVector<float>args = {20, 20, 5};
-    results.resize(20);
+    int iSize = ui->spinBox->value();
+    int iCities = ui->spinBox_2->value();
+    int iTries = ui->spinBox_3->value();
+
+    QVector<float>args = {iSize, iCities, iTries};
+    results.resize(iSize);
     for (auto &res : results)
-        res.resize(5);
+        res.resize(iTries);
     m_pExpert->Init(args);
+    printTable();
 }
 
 void TSP_ExpertWindow::updateTable(int ID, int iter, float fit)
 {
-    results[ID][5-iter] = fit;
+    results[ID][iter] = fit;
+    printTable();
+}
 
+void TSP_ExpertWindow::printTable()
+{
     QString str = "<table border=\"1\" cellpadding=\"2\" cellspacing=\"2\">";
     str += "<tr>";
     str += "<th>/</th>";
@@ -45,7 +54,6 @@ void TSP_ExpertWindow::updateTable(int ID, int iter, float fit)
         str += "<th>" + QString::number(a++) + "</th>";
         for (auto &val : res)
         {
-            //float fnum = floor(num * 5 + 0.5) / 5;
             str += "<td>" + QString::number(val) + "</td>";
         }
         str += "</tr>";

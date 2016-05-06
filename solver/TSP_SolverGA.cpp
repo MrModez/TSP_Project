@@ -28,8 +28,8 @@ void TSP_SolverGA::Execute()
     GA->InitPopulation();
     //qDebug("GA RUN");
 
-    int wait = 10;
-    int left = wait;
+    int wait = m_pMap->Size() * 2;  //amount of iterations to check = map size?
+    int left = wait + 1;
 
     int index = 0;
     float best_fit = INT_MAX;
@@ -53,7 +53,7 @@ void TSP_SolverGA::Execute()
         if (fit < best_fit)
         {
             best_fit = fit;
-            left = wait;
+            left = wait + 1;
             best = GA->GetBestWay();
             /*
             qDebug("GA %i:", index);
@@ -66,6 +66,10 @@ void TSP_SolverGA::Execute()
             qDebug("WAY %s", bstr.data());
             qDebug("FIT %f\n", fit);
             */
+            emit updateInfo(TSP_Result(best, fit, index));
+        }
+        if (left == wait)
+        {
             emit updateInfo(TSP_Result(best, fit, index));
         }
         if ((m_fResult > 0.0 && fit == m_fResult) || left == 0)

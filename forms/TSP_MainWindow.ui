@@ -57,6 +57,7 @@
      <string>Правка</string>
     </property>
     <addaction name="actionClear"/>
+    <addaction name="actionGenerate"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -129,6 +130,11 @@
    </property>
    <property name="text">
     <string>Экспериментный режим</string>
+   </property>
+  </action>
+  <action name="actionGenerate">
+   <property name="text">
+    <string>Сгенерировать граф</string>
    </property>
   </action>
  </widget>

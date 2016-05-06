@@ -11,6 +11,11 @@ TSP_ExpertSolver::TSP_ExpertSolver(int ID, int cities, int tries, QObject *paren
     m_pMap->GenerateRandom(cities);
 }
 
+TSP_ExpertSolver::~TSP_ExpertSolver()
+{
+    delete m_pMap;
+}
+
 void TSP_ExpertSolver::StartWorking()
 {
     m_pSolver = new TSP_SolverGA(new TSP_GA(), m_pMap);
@@ -24,8 +29,9 @@ void TSP_ExpertSolver::StartWorking()
 void TSP_ExpertSolver::Finished(TSP_Result result)
 {
     //qDebug() << "FINISHED" << m_ID << "WITH" << m_iTries << "TRIES LEFT";
-    //m_Results.push_back(result);
-    m_pSolver->deleteLater();
+
+    //m_pSolver->deleteLater();
+    delete m_pSolver;   //cleans memory faster
 
     if (m_iTries == 0)
     {
@@ -33,6 +39,7 @@ void TSP_ExpertSolver::Finished(TSP_Result result)
         return;
     }
 
+    emit updateInfo(result.fit, m_iTries);
     m_iTries--;
     StartWorking();
 }
@@ -40,12 +47,5 @@ void TSP_ExpertSolver::Finished(TSP_Result result)
 void TSP_ExpertSolver::UpdateInfo(TSP_Result result)
 {
     //qDebug() << m_ID << result.fit;
-    emit updateInfo(result.fit, m_iTries);
+    // emit updateInfo(result.fit, m_iTries);
 }
-
-/*
-QVector<TSP_Result> TSP_ExpertSolver::GetResults()
-{
-    return m_Results;
-}
-*/

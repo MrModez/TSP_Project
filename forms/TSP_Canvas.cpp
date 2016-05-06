@@ -46,6 +46,9 @@ void TSP_Canvas::setBackgroundColor(QColor val)
 
 void TSP_Canvas::paintEvent(QPaintEvent *)
 {
+    if (!m_pMap)
+        return;
+
     QPainter *painter = new QPainter(this);
     QPen pen(QColor(0, 0, 0, 2));
     QBrush brush(QColor(125, 255, 255, 255));
@@ -69,7 +72,6 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     painter->setBrush(brush);
     painter->setPen(pen);
 
-    //check map not nill
     QString str = "Iteration: " + QString::number(m_pMap->GetIteration());
     painter->drawText(QPoint(20, 20), str);
     str = "Fitness: " + QString::number(m_pMap->GetFitness());

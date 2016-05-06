@@ -18,6 +18,7 @@ class TSP_ExpertWindow : public TSP_BaseWindow
 public:
     explicit TSP_ExpertWindow(QWidget *parent = 0);
     ~TSP_ExpertWindow();
+    void printTable();
 
 private slots:
     void on_StartBut_clicked();

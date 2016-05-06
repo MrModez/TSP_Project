@@ -28,7 +28,7 @@ void TSP_ExpertManager::Init(QVector<float>args)
 
 void TSP_ExpertManager::InitSolver(int ID)
 {
-    qDebug() << "START" << ID;
+    qDebug() << "THREAD STARTED" << ID;
     QThread *pSolverThread = new QThread(this);
     TSP_ExpertSolver *pExpertSolver = m_pExpertSolvers[ID];
 
@@ -48,8 +48,8 @@ void TSP_ExpertManager::UpdateInfo(float fit, int iter)
 {
     TSP_ExpertSolver *pExpertSolver = qobject_cast<TSP_ExpertSolver*>(sender());
     int ID = m_pExpertSolvers.indexOf(pExpertSolver);
-    qDebug() << "THREAD UPDATED" << ID;
-    emit UpdateTable(ID, iter, fit);
+    //qDebug() << "THREAD UPDATED" << ID;
+    emit UpdateTable(ID, m_iTries-iter, fit);
 }
 
 void TSP_ExpertManager::Finished(float fit, int iter)

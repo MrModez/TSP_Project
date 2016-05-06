@@ -37,6 +37,7 @@ private slots:
     void on_actionStopBB_triggered();
     void on_actionShowBestResult_toggled(bool arg1);
     void on_actionClear_triggered();
+    void on_actionGenerate_triggered();
     void on_UpdateBut_clicked();
     void MatrixUpdated();
 

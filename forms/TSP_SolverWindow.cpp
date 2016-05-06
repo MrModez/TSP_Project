@@ -52,7 +52,6 @@ void TSP_SolverWindow::on_actionNew_triggered()
 {
     m_pMap->Clear();
     setWorking(false);
-    m_pMap->GenerateRandom(51);
 }
 
 void TSP_SolverWindow::on_actionOpen_triggered()
@@ -221,6 +220,12 @@ void TSP_SolverWindow::on_actionClear_triggered()
 {
     m_pMap->Clear();
     setWorking(false);
+}
+
+void TSP_SolverWindow::on_actionGenerate_triggered()
+{
+    m_pMap->Clear();
+    m_pMap->GenerateRandom(51);
 }
 
 void TSP_SolverWindow::saveTSP(QString fileName)

@@ -14,6 +14,8 @@ public slots:
     virtual void on_actionOpen_triggered(){}
     virtual void on_actionSave_triggered(QString){}
     virtual void on_actionSaveAs_triggered(){}
+    virtual void on_actionClear_triggered(){}
+    virtual void on_actionGenerate_triggered(){}
 
 signals:
     void newFileName(QString Filename);

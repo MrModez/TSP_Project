@@ -52,11 +52,13 @@ void MainWindow::setMode(TSP_Mode mode)
     {
         m_pWindow = new TSP_SolverWindow(this);
         ui->actionClear->setEnabled(true);
+        ui->actionGenerate->setEnabled(true);
     }
     else if (mode == TSP_EXPERT)
     {
         m_pWindow = new TSP_ExpertWindow(this);
         ui->actionClear->setEnabled(false);
+        ui->actionGenerate->setEnabled(false);
     }
     connect(m_pWindow, &TSP_BaseWindow::newFileName, this, &MainWindow::setFileName);
     setCentralWidget(m_pWindow);
@@ -104,4 +106,14 @@ void MainWindow::on_actionSolver_triggered()
 void MainWindow::on_actionExpert_triggered()
 {
     setMode(TSP_EXPERT);
+}
+
+void MainWindow::on_actionGenerate_triggered()
+{
+    m_pWindow->on_actionGenerate_triggered();
+}
+
+void MainWindow::on_actionClear_triggered()
+{
+    m_pWindow->on_actionClear_triggered();
 }

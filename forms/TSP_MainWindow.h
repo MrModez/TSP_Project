@@ -35,6 +35,9 @@ private slots:
     void on_actionExit_triggered();
     void on_actionSolver_triggered();
     void on_actionExpert_triggered();
+    void on_actionGenerate_triggered();
+
+    void on_actionClear_triggered();
 
 private:
     Ui::MainWindow      *ui;
