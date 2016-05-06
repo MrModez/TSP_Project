@@ -23,13 +23,13 @@ void TSP_ExpertSolver::StartWorking()
 
 void TSP_ExpertSolver::Finished(TSP_Result result)
 {
-    qDebug() << "FINISHED" << m_ID << "WITH" << m_iTries << "TRIES LEFT";
+    //qDebug() << "FINISHED" << m_ID << "WITH" << m_iTries << "TRIES LEFT";
     //m_Results.push_back(result);
     m_pSolver->deleteLater();
 
     if (m_iTries == 0)
     {
-        emit finished(result);
+        emit finished(result.fit, m_iTries);
         return;
     }
 
@@ -39,6 +39,13 @@ void TSP_ExpertSolver::Finished(TSP_Result result)
 
 void TSP_ExpertSolver::UpdateInfo(TSP_Result result)
 {
-    qDebug() << m_ID << result.fit;
+    //qDebug() << m_ID << result.fit;
+    emit updateInfo(result.fit, m_iTries);
 }
 
+/*
+QVector<TSP_Result> TSP_ExpertSolver::GetResults()
+{
+    return m_Results;
+}
+*/

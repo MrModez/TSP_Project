@@ -20,10 +20,11 @@ public:
     void InitSolver(int ID);
 
 signals:
+    UpdateTable(int ID, int iter, float fit);
 
 public slots:
-    //void UpdateInfo(vectorint vec, float fit, int id);
-    void Finished(TSP_Result result);
+    void UpdateInfo(float fit, int iter);
+    void Finished(float fit, int iter);
 
 private:
     int m_iSize;

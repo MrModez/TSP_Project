@@ -3,6 +3,7 @@
 
 #include <TSP_BaseWindow.h>
 #include <QWidget>
+#include <QVector>
 
 class TSP_ExpertManager;
 
@@ -20,10 +21,11 @@ public:
 
 private slots:
     void on_StartBut_clicked();
-
+    void updateTable(int ID, int iter, float fit);
 private:
     Ui::TSP_ExpertWindow *ui;
     TSP_ExpertManager   *m_pExpert;
+    QVector<QVector<float>> results;
 };
 
 #endif // TSP_EXPERTWINDOW_H

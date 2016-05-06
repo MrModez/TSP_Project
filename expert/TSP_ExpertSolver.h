@@ -15,9 +15,11 @@ class TSP_ExpertSolver : public QObject
     Q_OBJECT
 public:
     explicit TSP_ExpertSolver(int ID, int cities, int tries, QObject *parent = 0);
+    //QVector<TSP_Result> GetResults();
 
 signals:
-    void finished(TSP_Result result);
+    void finished(float fit, int iter);
+    void updateInfo(float fit, int iter);
 
 public slots:
     void StartWorking();
