@@ -12,7 +12,7 @@ class TSP_Algorithm
 {
 public:
     TSP_Algorithm();
-    ~TSP_Algorithm();
+    virtual ~TSP_Algorithm();
     virtual void NextIteration();
     virtual void Reset();
     virtual int GetIteration();

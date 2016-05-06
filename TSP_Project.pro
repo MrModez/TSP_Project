@@ -18,7 +18,7 @@ INCLUDEPATH += algorithm \
                shared   \
                solver
 
-QMAKE_LIBS+=-static -lgomp -lpthread
+LIBS+=-lgomp
 QMAKE_CXXFLAGS+=-fopenmp
 
 SOURCES += main.cpp\
