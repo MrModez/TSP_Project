@@ -24,7 +24,7 @@ void TSP_ExpertWindow::on_StartBut_clicked()
     int iCities = ui->spinBox_2->value();
     int iTries = ui->spinBox_3->value();
 
-    QVector<float>args = {iSize, iCities, iTries};
+    QVector<int>args = {iSize, iCities, iTries};
     results.resize(iSize);
     for (auto &res : results)
         res.resize(iTries);

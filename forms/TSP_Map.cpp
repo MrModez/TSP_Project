@@ -39,9 +39,9 @@ void TSP_Map::Erase()
 void TSP_Map::Del(int a)
 {
     m_Array.erase(m_Array.begin() + a);
-    for (auto i = a; i < m_Array.size(); i++)
+    for (size_t i = a; i < m_Array.size(); i++)
     {
-        for (auto j = 0; j < m_Array.size(); j++)
+        for (size_t j = 0; j < m_Array.size(); j++)
         {
             m_fMatrix[i][j] = m_fMatrix[i + 1][j + 1];
         }
@@ -66,7 +66,7 @@ float TSP_Map::Length(City a, City b)
 
 int TSP_Map::GetCityID(float x, float y, int r /*= 10*/)
 {
-    for (auto i = 0; i < GetArray().size(); i++)
+    for (size_t i = 0; i < GetArray().size(); i++)
     {
         if (x < m_Array[i].x + r && x > m_Array[i].x - r
          && y < m_Array[i].y + r && y > m_Array[i].y - r)
@@ -87,9 +87,9 @@ City TSP_Map::GetCityFromWay(std::vector<int>Way, int ID)
     return m_Array[Way[ID]];
 }
 
-void TSP_Map::Recount(int a)
+void TSP_Map::Recount(size_t a)
 {
-    for (auto i = 0; i < m_Array.size(); i++)
+    for (size_t i = 0; i < m_Array.size(); i++)
     {
         if (i != a)
         {
@@ -203,9 +203,9 @@ void TSP_Map::SetArrayY(int i, float Y)
 
 void TSP_Map::Clear()
 {
-    for (auto i = 0; i < m_Array.size(); i++)
+    for (size_t i = 0; i < m_Array.size(); i++)
     {
-        for (auto j = 0; j < m_Array.size(); j++)
+        for (size_t j = 0; j < m_Array.size(); j++)
         {
             m_fMatrix[i][j] = 0.0;
         }

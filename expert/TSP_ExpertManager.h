@@ -16,7 +16,7 @@ class TSP_ExpertManager : public QObject
 public:
     explicit TSP_ExpertManager(QObject *parent = 0);
     ~TSP_ExpertManager();
-    void Init(QVector<float>args);
+    void Init(QVector<int>args);
     void InitSolver(int ID);
 
 signals:

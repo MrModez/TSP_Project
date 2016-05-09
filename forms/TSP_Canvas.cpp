@@ -87,7 +87,7 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
     {
         pen.setColor(QColor(150, 50, 150, 150));
         painter->setPen(pen);
-        for (auto k = 0; k < m_pMap->GetBestWay().size() - 1; k++)
+        for (size_t k = 0; k < m_pMap->GetBestWay().size() - 1; k++)
         {
             auto city1 = m_pMap->GetCityFromWay(m_pMap->GetBestWay(), k);
             auto city2 = m_pMap->GetCityFromWay(m_pMap->GetBestWay(), k + 1);
@@ -105,7 +105,7 @@ void TSP_Canvas::paintEvent(QPaintEvent *)
         painter->setPen(pen);
         if (m_pMap->GetWay().size() > 0)
         {
-            for (auto k = 0; k < m_pMap->GetWay().size() - 1; k++)
+            for (size_t k = 0; k < m_pMap->GetWay().size() - 1; k++)
             {
                 auto city1 = m_pMap->GetCityFromWay(m_pMap->GetWay(), k);
                 auto city2 = m_pMap->GetCityFromWay(m_pMap->GetWay(), k + 1);

@@ -34,7 +34,7 @@ void TSP_SolverGA::Execute()
     int index = 0;
     float best_fit = INT_MAX;
     vectorint best;
-    float fit;
+    float fit = 0.0;
     while (!m_bStop)
     {
         if (m_bPaused && !m_bStop)

@@ -26,7 +26,7 @@ public:
     City GetCityFromWay(std::vector<int>Way, int ID);
 
     float Length(City a, City b);
-    void Recount(int a);
+    void Recount(size_t a);
 
     int GetIteration();
     int GetFitness();

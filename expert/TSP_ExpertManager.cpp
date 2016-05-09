@@ -13,7 +13,7 @@ TSP_ExpertManager::~TSP_ExpertManager()
     m_pExpertSolvers.clear();
 }
 
-void TSP_ExpertManager::Init(QVector<float>args)
+void TSP_ExpertManager::Init(QVector<int>args)
 {
     m_iSize = args[0];
     m_iCities = args[1];

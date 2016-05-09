@@ -23,7 +23,7 @@ void TSP_SolverBB::Execute()
 
     int index = 0;
     vectorint best;
-    float fit;
+    float fit = 0.0;
     while (!m_bStop)
     {
         qDebug("BB %i:", index++);

@@ -254,7 +254,7 @@ void TSP_SolverWindow::MatrixUpdated()
     QString str = "<table border=\"1\" cellpadding=\"2\" cellspacing=\"2\">";
     str += "<tr>";
     str += "<th>/</th>";
-    for (int i = 0; i < matrix.size(); i++)
+    for (size_t i = 0; i < matrix.size(); i++)
     {
         str += "<th>" + QString::number(i) + "</th>";
     }
