@@ -34,7 +34,7 @@ float TSP_GA::GetBestFitness()
     return m_Population[0].fitness;
 }
 
-void TSP_GA::SetSettings(std::vector<float>args)
+void TSP_GA::SetSettings(vectorfloat args)
 {
     m_iPopulationSize = args[0];
     m_fElitRate = args[1];
@@ -100,13 +100,11 @@ void TSP_GA::Elitism(int esize)
 }
 
 
-double TSP_GA::WayLength(std::vector<int>way, int pos1, int pos2)
+double TSP_GA::WayLength(vectorint &way, int pos1, int pos2)
 {
     if (pos1 > pos2)
     {
-        int temp = pos1;
-        pos1 = pos2;
-        pos2 = temp;
+        std::swap(pos1, pos2);
     }
     int len = 0;
     for (int i = pos1; i < pos2; i++)
@@ -192,58 +190,34 @@ void TSP_GA::Mate()
             }
         }
 
-        if (WayLength(m_Population[i1].way, pos1, pos2) <
+        if (WayLength(m_Population[i1].way, pos1, pos2) >=
             WayLength(m_Population[i2].way, pos1, pos2))
         {
-            for (int j = pos1; j < pos2; j++)
-            {
-                num[m_Population[i1].way[j]] = -1;
-            };
-            for (int j = 0; j < pos1; j++)
-            {
-                if (num[m_Population[i2].way[j]] != -1)
-                {
-                    omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
-                    num[m_Population[i2].way[j]] = -1;
-                }
-            };
-            for (int j = pos1; j < pos2; j++)
-            {
-                omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
-            }
-            for (int j = pos1; j < m_iSize; j++)
-            {
-                if (num[m_Population[i2].way[j]] != -1)
-                {
-                    omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
-                    num[m_Population[i2].way[j]] = -1;
-                }
-            };
+            std::swap(i1, i2);
         }
-        else {
-            for (int j = pos1; j < pos2; j++)
-            {
-                num[m_Population[i2].way[j]] = -1;
-            }
-            for (int j = 0; j < pos1; j++)
-            {
-                if (num[m_Population[i1].way[j]] != -1)
-                {
-                    omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
-                    num[m_Population[i1].way[j]] = -1;
-                }
-            }
-            for (int j = pos1; j < pos2; j++)
+
+        for (int j = pos1; j < pos2; j++)
+        {
+            num[m_Population[i1].way[j]] = -1;
+        }
+        for (int j = 0; j < pos1; j++)
+        {
+            if (num[m_Population[i2].way[j]] != -1)
             {
                 omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
+                num[m_Population[i2].way[j]] = -1;
             }
-            for (int j = pos1; j < m_iSize; j++)
+        }
+        for (int j = pos1; j < pos2; j++)
+        {
+            omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
+        }
+        for (int j = pos1; j < m_iSize; j++)
+        {
+            if (num[m_Population[i2].way[j]] != -1)
             {
-                if (num[m_Population[i1].way[j]] != -1)
-                {
-                    omp_Buffer[i].way.push_back(m_Population[i1].way[j]);
-                    num[m_Population[i1].way[j]] = -1;
-                }
+                omp_Buffer[i].way.push_back(m_Population[i2].way[j]);
+                num[m_Population[i2].way[j]] = -1;
             }
         }
         omp_Buffer[i].way.push_back(0);
@@ -253,11 +227,11 @@ void TSP_GA::Mate()
         if (rnd < m_fMutationRate)
         {
             Mutate(omp_Buffer[i]);
-        }        
+        }
         else if (rnd < m_fMutationMoveRate)
         {
             Mutate_move(omp_Buffer[i]);
-        }        
+        }
         else if (rnd < m_fMutationSupRate)
         {
             SupMutate(omp_Buffer[i]);
@@ -271,19 +245,3 @@ void TSP_GA::Swap()
 {
     m_Population = m_Buffer;
 }
-
-
-/*
-QString TSP_GA::PrintBest()
-{
-    ga_struct gav = m_Population[0];
-    m_fFitness = gav.fitness;
-    QString Line = "[GA] " + QString::number(m_iIteration) + " - " +
-                             QString::number((int)gav.fitness) + ": ";
-    for (unsigned int i = 0; i < gav.way.size(); i++)
-    {
-        Line = Line + QString::number((int)gav.way[i] + 1) + " ";
-    }
-    return Line;
-}
-*/

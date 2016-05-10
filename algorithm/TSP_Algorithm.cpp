@@ -41,7 +41,7 @@ void TSP_Algorithm::SetArray(vectorCity Array)
     m_iSize = (int)Array.size();
 }
 
-float TSP_Algorithm::GetLength(City a, City b)
+float TSP_Algorithm::GetLength(City &a, City &b)
 {
     return (float)sqrt(sqr(a.x - b.x) + sqr(a.y - b.y));    
 }

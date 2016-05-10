@@ -25,17 +25,15 @@ public:
     virtual vectorint GetBestWay();
     virtual float GetBestFitness();
 
-    void SetSettings(std::vector<float>args);//int iPopsize, float fElitrate, float fMutation, float fSupmutation);
+    void SetSettings(vectorfloat args);
     void InitPopulation();
     void CalcFitness();
-    bool FitnessSort(ga_struct x, ga_struct y);
     void SortByFitness();
-    //QString PrintBest();
     void Elitism(int esize);
     void Mutate(ga_struct &member);
     void SupMutate(ga_struct &member);
     void Mutate_move(ga_struct &member);
-    double WayLength(vectorint way, int pos1, int pos2);
+    double WayLength(vectorint &way, int pos1, int pos2);
     void Mate();
     void Swap();
 

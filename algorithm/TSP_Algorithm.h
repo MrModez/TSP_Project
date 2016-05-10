@@ -19,7 +19,7 @@ public:
     virtual vectorint GetBestWay() = 0;
     virtual float GetBestFitness() = 0;
     virtual void SetArray(vectorCity Array);
-    virtual float GetLength(City a, City b);
+    virtual float GetLength(City &a, City &b);
 
 protected:
     vectorCity  m_Array;
