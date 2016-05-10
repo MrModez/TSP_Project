@@ -108,13 +108,13 @@ double TSP_GA::WayLength(vectorint &way, int pos1, int pos2)
     }
     int len = 0;
     for (int i = pos1; i < pos2; i++)
-        len += GetLength(m_Array[way[pos1]], m_Array[way[pos2]]);
+        len += GetLength(m_Array[way[i]], m_Array[way[i + 1]]);
     return len;
 }
 
 void TSP_GA::Mutate(ga_struct &member)
 {
-    int times = rand() % m_iSize;
+    int times = rand() % (m_iSize - 1) + 1;
     for (int i = 0; i < times; i++)
     {
         int pos1 = rand() % (m_iSize - 1) + 1;
