@@ -3,17 +3,15 @@
 #include "TSP_Map.h"
 #include "TSP_SolverGA.h"
 
-TSP_ExpertSolver::TSP_ExpertSolver(int ID, int cities, int tries, QObject *parent) : QObject(parent)
+TSP_ExpertSolver::TSP_ExpertSolver(TSP_Map *map, QVector<int>args, QObject *parent) : QObject(parent)
 {
-    m_ID = ID;
-    m_iTries = tries;
-    m_pMap = new TSP_Map();
-    m_pMap->GenerateRandom(cities);
+    m_ID = args[0];
+    m_iTries = args[1];
+    m_pMap = map;
 }
 
 TSP_ExpertSolver::~TSP_ExpertSolver()
 {
-    delete m_pMap;
 }
 
 void TSP_ExpertSolver::StartWorking()
@@ -21,7 +19,44 @@ void TSP_ExpertSolver::StartWorking()
     m_pSolver = new TSP_SolverGA(new TSP_GA(), m_pMap);
     connect(m_pSolver, &TSP_Solver::updateInfo, this, &TSP_ExpertSolver::UpdateInfo);
     connect(m_pSolver, &TSP_Solver::finished, this, &TSP_ExpertSolver::Finished);
-    QVector<float>arg{10000, 0.001f, 0.20f, 0.55f, 0.75f};
+    float mut1 = 0.0;
+    float mut2 = 0.0;
+    float mut3 = 0.0;
+    int ID = m_ID % 8;
+    if (ID == 1)
+    {
+        mut1 = 0.5f;
+    }
+    if (ID == 2)
+    {
+        mut2 = 0.5f;
+    }
+    if (ID == 3)
+    {
+        mut3 = 0.5f;
+    }
+    if (ID == 4)
+    {
+        mut1 = 0.33f;
+        mut2 = 0.66f;
+    }
+    if (ID == 5)
+    {
+        mut2 = 0.33f;
+        mut3 = 0.66f;
+    }
+    if (ID == 6)
+    {
+        mut1 = 0.33f;
+        mut3 = 0.66f;
+    }
+    if (ID == 7)
+    {
+        mut1 = 0.25f;
+        mut2 = 0.50f;
+        mut3 = 0.75f;
+    }
+    QVector<float>arg{10000, 0.001f, mut1, mut2, mut3};
     dynamic_cast<TSP_SolverGA*>(m_pSolver)->SetSettings(arg);
     m_pSolver->StartAlgorithm();
 }

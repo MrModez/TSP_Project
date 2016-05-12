@@ -154,6 +154,8 @@ void TSP_GA::Mate()
     Elitism(esize);
     std::vector<ga_struct> omp_Buffer = m_Buffer;
 
+    srand (time(NULL));
+
     // Mate the rest
 #pragma omp parallel for shared(omp_Buffer)
     for (int i = esize; i < m_iPopulationSize; i++)

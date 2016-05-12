@@ -14,7 +14,7 @@ class TSP_ExpertSolver : public QObject
 {
     Q_OBJECT
 public:
-    explicit TSP_ExpertSolver(int ID, int cities, int tries, QObject *parent = 0);
+    explicit TSP_ExpertSolver(TSP_Map *map, QVector<int>args, QObject *parent = 0);
     ~TSP_ExpertSolver();
 
 signals:

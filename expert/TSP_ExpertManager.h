@@ -31,6 +31,7 @@ private:
     int m_iSize;
     int m_iCities;
     int m_iTries;
+    TSP_Map *m_pMap;
     QVector<TSP_ExpertSolver*>  m_pExpertSolvers;
 };
 
