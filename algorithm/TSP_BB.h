@@ -25,11 +25,6 @@ public:
 
     ~BB_Info()
     {
-        Popt.clear();
-        Pt.clear();
-        nsq1.clear();
-        nsq2.clear();
-        Pq.clear();
     }
 
     int col;

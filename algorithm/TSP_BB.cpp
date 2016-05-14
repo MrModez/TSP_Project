@@ -30,15 +30,8 @@ TSPM::TSPM(int nt , BB_Info *_info)
         mr.resize(n1);
 }
 
-TSPM::~TSPM( )
+TSPM::~TSPM()
 {
-    ns1.clear();
-    ns2.clear();
-    mj1.clear();
-    mj2.clear();
-    mi1.clear();
-    mi2.clear();
-    MR.clear();
 }
 
 void TSPM::Copy(TSPM*& r)
@@ -520,8 +513,6 @@ TSP_BB::TSP_BB() : TSP_Algorithm()
 
 TSP_BB::~TSP_BB()
 {
-    delete info;
-
 }
 
 void TSP_BB::SetArray(vectorCity Array)
@@ -576,8 +567,9 @@ void TSP_BB::SetArray(vectorCity Array)
     }
 }
 
-void TSP_BB::Start() {
-    if (!pb)
+void TSP_BB::Start()
+{
+    if (!pb || !info)
         return;
 
     TSPM *p1 = pb;
@@ -618,13 +610,15 @@ void TSP_BB::Start() {
     int i = 1;
     for (int j = 1; j <= info->nn; j++)
     {
-      Way.push_back(i-1);
-      i = info->Popt[i];
+        Way.push_back(i-1);
+        i = info->Popt[i];
     }
     Way.push_back(0);
 
     m_fFitness = info->Smin;
     m_fFitness += Length(m_Array[i-1], m_Array[0]);
+
+    delete info;
 }
 
 float TSP_BB::Length(City a, City b)
