@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Widget-window for single solving
+// Назначение: Виджет для решения одного случая
+//
+// ============================================================================================================
 #include "TSP_SolverWindow.h"
 #include "ui_TSP_SolverWindow.h"
 #include <QtCore>

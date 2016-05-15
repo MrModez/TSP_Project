@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Experimental solver
+// Назначение: Решатель экспериментов
+//
+// ============================================================================================================
 #include <QtCore>
 #include "TSP_ExpertSolver.h"
 #include "TSP_Map.h"

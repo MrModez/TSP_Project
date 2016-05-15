@@ -1,8 +1,9 @@
-// ====== Copyright © 2015, MrModez (Zagir Fabarisov), All rights reserved. ====
+// ====== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. ====
 //
 // Purpose: Base TSP algorithm
+// Назначение: Базовый класс для алгоритма решения TSP
 //
-// =============================================================================
+// ============================================================================================================
 #include "TSP_Algorithm.h"
 #include "math.h"
 

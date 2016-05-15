@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Manager class for experimental solvers
+// Назначение: Менеджер для решателей экспериментов
+//
+// ============================================================================================================
 #include <QtCore>
 #include "TSP_ExpertManager.h"
 #include "TSP_ExpertSolver.h"

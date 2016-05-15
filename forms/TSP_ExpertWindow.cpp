@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Widget-window for experimental solving
+// Назначение: Виджет для решения экспериментов
+//
+// ============================================================================================================
 #include "TSP_ExpertWindow.h"
 #include "ui_TSP_ExpertWindow.h"
 #include "TSP_ExpertManager.h"

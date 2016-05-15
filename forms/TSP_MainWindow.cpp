@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Main window of the application
+// Назначение: Главное окно приложения
+//
+// ============================================================================================================
 #include "TSP_MainWindow.h"
 #include <QtCore>
 #include <QFileDialog>

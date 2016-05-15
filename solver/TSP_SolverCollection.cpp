@@ -1,3 +1,9 @@
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
+//
+// Purpose: Class for managing solvers
+// Назначение: Класс для управления решателями
+//
+// ============================================================================================================
 #include <QtCore>
 #include "TSP_SolverCollection.h"
 #include "TSP_SolverGA.h"

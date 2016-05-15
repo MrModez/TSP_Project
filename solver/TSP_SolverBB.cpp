@@ -1,8 +1,9 @@
-// ====== Copyright © 2015-2016, MrModez (Zagir Fabarisov), All rights reserved. ====
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
 //
-// Purpose: BB Solver
+// Purpose: Branch and Bounds solver class
+// Назначение: Класс для решения методом ветвей и границ
 //
-// =============================================================================
+// ============================================================================================================
 #include "TSP_SolverBB.h"
 #include "TSP_BB.h"
 #include "TSP_Algorithm.h"

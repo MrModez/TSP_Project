@@ -1,8 +1,9 @@
-// ====== Copyright © 2015, MrModez (Zagir Fabarisov), All rights reserved. ====
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
 //
-// Purpose: Canvas
+// Purpose: Canvas for the graph
+// Назначение: Виджет для рисования графа
 //
-// =============================================================================
+// ============================================================================================================
 #include "TSP_Canvas.h"
 #include "TSP_Map.h"
 #include <QPainter>

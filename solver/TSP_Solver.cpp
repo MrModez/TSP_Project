@@ -1,8 +1,9 @@
-// ====== Copyright © 2015, MrModez (Zagir Fabarisov), All rights reserved. ====
+// ===== Copyright © 2015-2016, MrModez (Zagir Fabarisov), Flatag (Tagir Fabarisov), All rights reserved. =====
 //
-// Purpose: Solver
+// Purpose: Base Solver class
+// Назначение: Базовый класс для решателя
 //
-// =============================================================================
+// ============================================================================================================
 #include "TSP_Solver.h"
 #include "TSP_Map.h"
 #include "TSP_Algorithm.h"
