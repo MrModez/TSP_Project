@@ -8,6 +8,7 @@
 #include "ui_TSP_SolverWindow.h"
 #include <QtCore>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "TSP_Map.h"
 #include "TSP_Canvas.h"
 #include "TSP_SolverCollection.h"
@@ -139,6 +140,15 @@ void TSP_SolverWindow::on_actionStartGA_toggled(bool arg1)
 {
     if (arg1)
     {
+        if (m_pMap->GetArray().size() < 4)
+        {
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setText("Количество городов должно быть больше трех.");
+            msgBox.exec();
+            ui->StartGABut->setChecked(false);
+            return;
+        }
         if (m_pSolvers->IsWorking(Solver_GA))
         {
             m_pSolvers->Continue(Solver_GA);
@@ -177,6 +187,15 @@ void TSP_SolverWindow::on_actionStartBB_toggled(bool arg1)
 {
     if (arg1)
     {
+        if (m_pMap->GetArray().size() < 4)
+        {
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setText("Количество городов должно быть больше трех.");
+            msgBox.exec();
+            ui->StartBBBut->setChecked(false);
+            return;
+        }
         if (m_pSolvers->IsWorking(Solver_BB))
         {
             m_pSolvers->Continue(Solver_BB);

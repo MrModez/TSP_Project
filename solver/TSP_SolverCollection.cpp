@@ -45,6 +45,12 @@ void TSP_SolverCollection::Solve(int ID, QVector<float> arg)
 {
     qDebug("Solving %i", ID);
 
+    if (m_pMap->GetArray().size() < 4)
+    {
+        emit onFinish(ID);
+        return;
+    }
+
     QThread *pSovlerThread = new QThread(this);
     m_pSolvers[ID] = Fabricate(ID);
     m_pSolvers[ID]->moveToThread(pSovlerThread);
