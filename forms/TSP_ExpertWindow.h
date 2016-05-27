@@ -11,6 +11,8 @@ namespace Ui {
 class TSP_ExpertWindow;
 }
 
+class TSP_Map;
+
 class TSP_ExpertWindow : public TSP_BaseWindow
 {
     Q_OBJECT
@@ -22,11 +24,13 @@ public:
     void Finished();
 
 private slots:
+    void on_actionOpen_triggered();
     void on_StartBut_clicked();
     void UpdateTable(int ID, int iter, float fit);
 
 private:
     Ui::TSP_ExpertWindow *ui;
+    TSP_Map *m_pMap;
     TSP_ExpertManager   *m_pExpert;
     QVector<QVector<float>> results;
 };

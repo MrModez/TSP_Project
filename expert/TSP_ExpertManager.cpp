@@ -9,17 +9,16 @@
 #include "TSP_ExpertSolver.h"
 #include "TSP_Map.h"
 
-TSP_ExpertManager::TSP_ExpertManager(QObject *parent) : QObject(parent)
+TSP_ExpertManager::TSP_ExpertManager(TSP_Map *pMap, QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<vectorint>("vectorint");
     qRegisterMetaType<TSP_Result>("TSP_Result");
-    m_pMap = new TSP_Map();
+    m_pMap = pMap;
 }
 
 TSP_ExpertManager::~TSP_ExpertManager()
 {
     m_pExpertSolvers.clear();
-    delete m_pMap;
 }
 
 void TSP_ExpertManager::Init(QVector<int>args)
@@ -27,7 +26,7 @@ void TSP_ExpertManager::Init(QVector<int>args)
     m_iSize = args[0];
     m_iCities = args[1];
     m_iTries = args[2];
-    m_pMap->GenerateRandom(m_iCities);
+    //m_pMap->GenerateRandom(m_iCities);
     for (int i = 0; i < m_iSize; i++)
     {
         QVector<int>args = {i, m_iTries};
