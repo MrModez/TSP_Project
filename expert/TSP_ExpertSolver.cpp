@@ -74,7 +74,7 @@ void TSP_ExpertSolver::Finished(TSP_Result result)
     //m_pSolver->deleteLater();
     delete m_pSolver;   //cleans memory faster
 
-    if (m_iTries == 0)
+    if (m_iTries == 1)
     {
         emit finished(result.fit, m_iTries);
         return;
